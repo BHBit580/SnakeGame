@@ -22,6 +22,7 @@ public class FoodSpawner : MonoBehaviour
         for (int i = 0; i < noToSpawn; i++)
         {
             GameObject food = Instantiate(foodPrefab, GenerateRandomPosition(), Quaternion.identity);
+            food.layer = LayerMask.NameToLayer("Food");
             food.transform.SetParent(transform);
             foodList.Add(food);
         }

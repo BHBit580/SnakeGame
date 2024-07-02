@@ -2,9 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class EnemySnakeMovement : MonoBehaviour , ISnake
-{
+
+public class PlayerSnakeMovement : MonoBehaviour , ISnake{
+    
+    [Header("References")]
+    [SerializeField] private InputReader inputReader;
     [SerializeField] private List<Transform> bodyPartsList = new List<Transform>();
     
     [Header("Values")]
@@ -12,23 +16,17 @@ public class EnemySnakeMovement : MonoBehaviour , ISnake
     [SerializeField] private float speed = 1;
     [SerializeField] private float rotationSpeed = 50;
     
+    
+
+    
     private float dis;
     private Transform curBodyPart;
     private Transform PrevBodyPart;
-
-
-    private void Start()
-    {
-        SnakeHead snakeHead = GetComponentInChildren<SnakeHead>();
-
-        for (int i = 0; i < 25; i++)
-        {
-            snakeHead.AddBodyPart();
-        }
-    }
-
+    
     private void Update()
     {
+        
+        
         MoveHead();
         MoveBodyParts();
     }
@@ -37,10 +35,10 @@ public class EnemySnakeMovement : MonoBehaviour , ISnake
     {
         bodyPartsList[0].Translate(bodyPartsList[0].forward * (speed * Time.deltaTime), Space.World);
 
-       /* if (inputReader.HorizontalInput != 0)
+        if (inputReader.HorizontalInput != 0)
         {
             bodyPartsList[0].Rotate(Vector3.up * (rotationSpeed * Time.deltaTime * inputReader.HorizontalInput));
-        }*/
+        }
     }
 
     
@@ -65,8 +63,7 @@ public class EnemySnakeMovement : MonoBehaviour , ISnake
             curBodyPart.rotation = Quaternion.Slerp(curBodyPart.rotation, PrevBodyPart.rotation, T);
         }
     }
-    
-    
+
     public void AddBodyPart(Transform newPart)
     {
         bodyPartsList.Add(newPart);
@@ -76,4 +73,6 @@ public class EnemySnakeMovement : MonoBehaviour , ISnake
     {
         return bodyPartsList;
     }
+
+    
 }

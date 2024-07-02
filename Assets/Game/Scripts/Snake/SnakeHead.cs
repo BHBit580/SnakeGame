@@ -13,6 +13,11 @@ public class SnakeHead : MonoBehaviour
         iSnake = GetComponentInParent<ISnake>();
     }
 
+    private void Start()
+    {
+        transform.gameObject.layer = LayerMask.NameToLayer("BodyPart");
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Food"))
@@ -38,6 +43,7 @@ public class SnakeHead : MonoBehaviour
         List<Transform> bodyParts = iSnake.GetSnakeBeadsList();
         Transform newPart = (Instantiate (beadsPrefab, bodyParts[bodyParts.Count - 1].position, bodyParts[bodyParts.Count - 1].rotation) as GameObject).transform;
         newPart.gameObject.tag = "BodyPart";
+        newPart.gameObject.layer= LayerMask.NameToLayer("BodyPart");
         newPart.SetParent(transform.parent);
         iSnake.AddBodyPart(newPart);
     }
