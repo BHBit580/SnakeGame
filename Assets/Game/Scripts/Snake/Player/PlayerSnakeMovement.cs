@@ -9,11 +9,13 @@ public class PlayerSnakeMovement : MonoBehaviour , ISnake{
     
     [Header("References")]
     [SerializeField] private InputReader inputReader;
+    [SerializeField] private CoolDownSystem coolDownSystem;
     [SerializeField] private List<Transform> bodyPartsList = new List<Transform>();
     
     [Header("Values")]
     [SerializeField] private float minDistance = 0.25f;
     [SerializeField] private float speed = 1;
+    [SerializeField] private float fastSpeed = 2;
     [SerializeField] private float rotationSpeed = 50;
     
     
@@ -23,22 +25,23 @@ public class PlayerSnakeMovement : MonoBehaviour , ISnake{
     private Transform curBodyPart;
     private Transform PrevBodyPart;
     
+    
+
     private void Update()
     {
-        
-        
         MoveHead();
         MoveBodyParts();
     }
 
     private void MoveHead()
     {
-        bodyPartsList[0].Translate(bodyPartsList[0].forward * (speed * Time.deltaTime), Space.World);
-
         if (inputReader.HorizontalInput != 0)
         {
             bodyPartsList[0].Rotate(Vector3.up * (rotationSpeed * Time.deltaTime * inputReader.HorizontalInput));
         }
+        
+        
+        bodyPartsList[0].Translate(bodyPartsList[0].forward * (speed * Time.deltaTime), Space.World);
     }
 
     
@@ -74,5 +77,6 @@ public class PlayerSnakeMovement : MonoBehaviour , ISnake{
         return bodyPartsList;
     }
 
-    
+
+
 }

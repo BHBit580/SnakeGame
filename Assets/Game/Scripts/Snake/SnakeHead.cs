@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SnakeHead : MonoBehaviour
 {
-    [SerializeField] private GameObject beadsPrefab;
+    public GameObject beadsPrefab;
     private ISnake iSnake;
 
     private void Awake()
@@ -18,9 +18,9 @@ public class SnakeHead : MonoBehaviour
         transform.gameObject.layer = LayerMask.NameToLayer("BodyPart");
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Food"))
+        if (other.gameObject.CompareTag("Food"))           //make only player camera shake
         {
             Destroy(other.gameObject);
             AddBodyPart();
