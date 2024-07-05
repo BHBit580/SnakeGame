@@ -15,6 +15,9 @@ public class EnemyRandomPosition : EnemyBaseState , IHasCoolDown
 
     public override void Tick(float deltaTime)
     {
+        Debug.Log("Random");
+        
+        SwitchToTargetFoodState();
         TargetRandomPositions();
     }
 
@@ -23,13 +26,24 @@ public class EnemyRandomPosition : EnemyBaseState , IHasCoolDown
         
     }
     
+    
+    private void SwitchToTargetFoodState()
+    {
+        Physics.OverlapSphereNonAlloc(stateMachine.headTransform.position, stateMachine.foodDetectionRadius, stateMachine.foodInRangeCollider,
+            LayerMask.GetMask("Food"));
+        
+        if (stateMachine.foodInRangeCollider.Length > 0 && stateMachine.foodInRangeCollider[0] !=null)
+        {
+            stateMachine.SwitchState(new EnemyTargetFoodState(stateMachine));
+        }
+    }
+    
     private void TargetRandomPositions()
     {
         bool isInCoolDown = stateMachine.coolDownSystem.IsInCoolDown(stateMachine.UniqueID);
         if (isInCoolDown) return;
     
         float randomAngle = Random.Range(-45 , 45);
-        Debug.Log(randomAngle);
         Vector3 direction = Quaternion.AngleAxis(randomAngle, Vector3.up) * stateMachine.headTransform.forward;
         
         stateMachine.RotateHead(direction);

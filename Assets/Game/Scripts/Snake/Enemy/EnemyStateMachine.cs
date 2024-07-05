@@ -35,7 +35,8 @@ public class EnemyStateMachine : StateMachine, ISnake
     private float dis;
     private Transform curBodyPart;
     private Transform PrevBodyPart;
-    
+    private Tween currentRotateTween;
+    public Collider[] foodInRangeCollider = new Collider[10];
 
 
 
@@ -52,7 +53,7 @@ public class EnemyStateMachine : StateMachine, ISnake
             snakeHead.AddBodyPart();
         }
 
-        SwitchState(new EnemyRandomPosition(this));
+        SwitchState(new EnemyTargetFoodState(this));
     }
 
     protected override void Update()
@@ -69,14 +70,19 @@ public class EnemyStateMachine : StateMachine, ISnake
     {
         if(IsRotating) return;
         
+        if (currentRotateTween != null && currentRotateTween.IsActive())
+        {
+            currentRotateTween.Kill();
+        }
+        
         float angle = Vector3.Angle(headTransform.forward, directionVector);                     
         
         if (Vector3.Cross( directionVector , headTransform.forward).y > 0) angle = -angle;                  
         
         Vector3 rotationAngle = new Vector3(0, headTransform.rotation.eulerAngles.y + angle, 0);
         
-        Tween rotateTween = headTransform.DORotate(rotationAngle , 1/rotationSpeed);
-        rotateTween.onComplete += () => IsRotating = false;
+        currentRotateTween = headTransform.DORotate(rotationAngle , 1/rotationSpeed);
+        currentRotateTween.onComplete += () => IsRotating = false;
     }
     
     

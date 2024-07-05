@@ -1,9 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyTargetFoodState : EnemyBaseState
 {
+
+    private Collider targetCollider;
+    
     public EnemyTargetFoodState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
     }
@@ -15,6 +19,8 @@ public class EnemyTargetFoodState : EnemyBaseState
 
     public override void Tick(float deltaTime)
     {
+        Debug.Log("Target");
+        SwitchToRandomMovingState();
         TargetFood();
     }
 
@@ -25,16 +31,47 @@ public class EnemyTargetFoodState : EnemyBaseState
     
     private void TargetFood()
     {
-        if(stateMachine.IsRotating) return;
+        RefreshArray();
         
-        Collider[] foodInRange = Physics.OverlapSphere(stateMachine.headTransform.position, stateMachine.foodDetectionRadius,
+        Physics.OverlapSphereNonAlloc(stateMachine.headTransform.position, stateMachine.foodDetectionRadius, stateMachine.foodInRangeCollider,
             LayerMask.GetMask("Food"));
-        if (foodInRange.Length > 0)
-        {
-             Vector3 direction = stateMachine.headTransform.position - foodInRange[0].transform.position;
-             stateMachine.RotateHead(direction);
-        }
+
         
-        if(foodInRange.Length ==0) stateMachine.SwitchState(new EnemyRandomPosition(stateMachine));
+        if (targetCollider == null || !stateMachine.foodInRangeCollider.ToList().Contains(targetCollider))
+        {
+            if (stateMachine.foodInRangeCollider[0] != null)
+            {
+                targetCollider = stateMachine.foodInRangeCollider[0];
+            }
+        }
+
+        
+
+        if (targetCollider != null)
+        {
+            Vector3 direction = stateMachine.headTransform.position - targetCollider.transform.position;
+            stateMachine.RotateHead(direction);
+        }
+    }
+
+
+    private void RefreshArray()
+    {
+        for (int i = 0; i < stateMachine.foodInRangeCollider.Length; i++)
+        {
+            stateMachine.foodInRangeCollider[i] = null;
+        }
+    }
+
+    private void SwitchToRandomMovingState()
+    {
+        List<Collider> colliderList = stateMachine.foodInRangeCollider.ToList();
+
+        bool allNull = colliderList.All(collider => collider == null);
+
+        if(allNull)
+        {
+            stateMachine.SwitchState(new EnemyRandomPosition(stateMachine));
+        }
     }
 }
