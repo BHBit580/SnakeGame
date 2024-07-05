@@ -29,6 +29,7 @@ public class PlayerSnakeMovement : MonoBehaviour , ISnake{
 
     private void Update()
     {
+        
         MoveHead();
         MoveBodyParts();
     }
@@ -76,6 +77,8 @@ public class PlayerSnakeMovement : MonoBehaviour , ISnake{
     {
         return bodyPartsList;
     }
+
+    
 
 
 

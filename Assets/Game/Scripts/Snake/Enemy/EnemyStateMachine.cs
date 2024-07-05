@@ -6,7 +6,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
 
-public class EnemyStateMachine : MonoBehaviour, ISnake , IHasCoolDown
+public class EnemyStateMachine : StateMachine, ISnake 
 {
      [Header("References")]
     public CoolDownSystem coolDownSystem;
@@ -27,13 +27,15 @@ public class EnemyStateMachine : MonoBehaviour, ISnake , IHasCoolDown
     
     
     public int UniqueID { get;private set;}
+    public bool IsRotating { get; set; }
+    
     [HideInInspector] public Transform headTransform;
     
     private Vector3 targetPosition;
     private float dis;
     private Transform curBodyPart;
     private Transform PrevBodyPart;
-    private bool isRotating;
+    
 
 
 
@@ -50,72 +52,31 @@ public class EnemyStateMachine : MonoBehaviour, ISnake , IHasCoolDown
             snakeHead.AddBodyPart();
         }
 
-        
+        SwitchState(new EnemyRandomPosition(this));
     }
 
-    private void Update()
+    protected override void Update()
     {
-        TargetRandomPositions();
+        base.Update();
         headTransform.Translate(headTransform.forward * (speed * Time.deltaTime));
         MoveBodyParts(); 
     }
+    
+    
 
-    private void TargetRandomPositions()
+    
+    public void RotateHead(Vector3 directionVector)
     {
-        bool isInCoolDown = coolDownSystem.IsInCoolDown(UniqueID);
-        if (isInCoolDown) return;
-    
-        float randomAngle = Random.Range(-90f, 90f);
+        if(IsRotating) return;
         
-        Debug.Log("BOOO");
-
-        Vector3 direction = headTransform.forward + headTransform.right;
+        float angle = Vector3.Angle(headTransform.forward, directionVector);                     
         
-        direction.Normalize();
+        if (Vector3.Cross( directionVector , headTransform.forward).y > 0) angle = -angle;                  
         
-        if (!isRotating) StartCoroutine(RotateHead(direction));
-    
-        Debug.DrawRay(headTransform.position, direction, Color.blue , randomPositionTimer);
-        coolDownSystem.StartCoolDown(this);
-    }
-
-    
-    IEnumerator RotateHead(Vector3 directionVector)
-    {
-        isRotating = true;
+        Vector3 rotationAngle = new Vector3(0, headTransform.rotation.eulerAngles.y + angle, 0);
         
-        Vector3 startRotation = headTransform.rotation.eulerAngles;
-        float angle = Vector3.SignedAngle(headTransform.forward, directionVector, Vector3.up);
-        
-        Vector3 targetRotation =  new Vector3(0, angle, 0);
-
-        float elapsedTime = 0f;
-        float duration = Mathf.Abs(angle) / rotationSpeed; 
-
-        while (elapsedTime < duration)
-        {
-            headTransform.rotation = Quaternion.Euler(Vector3.Lerp(startRotation, targetRotation, elapsedTime / duration));
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-        
-        headTransform.rotation = Quaternion.Euler(targetRotation);
-        headTransform.rotation = Quaternion.Euler(0, headTransform.rotation.eulerAngles.y, 0);
-        isRotating = false;
-    }
-
-    
-    private bool TargetFood()
-    {
-        Collider[] foodInRange = Physics.OverlapSphere(headTransform.position, foodDetectionRadius,
-            LayerMask.GetMask("Food"));
-        if (foodInRange.Length > 0)
-        {
-            targetPosition = foodInRange[0].transform.position;
-            return true;
-        }
-        
-        return false;
+        Tween rotateTween = headTransform.DORotate(rotationAngle , 1/rotationSpeed);
+        rotateTween.onComplete += () => IsRotating = false;
     }
     
     
@@ -169,11 +130,6 @@ public class EnemyStateMachine : MonoBehaviour, ISnake , IHasCoolDown
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(bodyPartsList[0].transform.position, randomPositionRadius);
     }
-
-
-    public int ID => UniqueID;
-    public float CoolDownDuration => randomPositionTimer;
-    
 }
 
 

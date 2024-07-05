@@ -1,21 +1,23 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class Learn : MonoBehaviour
 {
-    public Transform target;
+    [SerializeField] private float speed = 2;
+    public bool isRotating = false;
 
     private void Update()
     {
-        Vector3 targetDirection = target.position - transform.position;
+        Rotate();
+    }
 
-        Vector3 forward = transform.forward;
-
-        float angle = Vector3.SignedAngle(targetDirection, forward, Vector3.up);
-        Debug.Log(angle);
-        
-        Debug.DrawRay(transform.position , targetDirection , Color.red);
+    private void Rotate()
+    {
+        if (isRotating) return; 
+        Debug.Log("Rotating"); 
+        Tween rotation =  transform.DORotate(transform.rotation.eulerAngles + new Vector3(0, 100, 0), 1 / speed); 
+        isRotating = true;
+        rotation.onComplete += () => isRotating = false;
     }
 }

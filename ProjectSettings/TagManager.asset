@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Food
   - BodyPart
+  - Ground
   layers:
   - Default
   - TransparentFX

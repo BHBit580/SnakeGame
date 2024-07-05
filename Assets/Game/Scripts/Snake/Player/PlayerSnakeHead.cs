@@ -6,6 +6,6 @@ public class PlayerSnakeHead : SnakeHead
 {
     protected override void OnTriggerEnter(Collider other)
     {
-        base.OnTriggerEnter(other); ;
+        base.OnTriggerEnter(other); 
     }
 }
