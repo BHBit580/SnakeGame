@@ -19,7 +19,9 @@ public class EnemyTargetFoodState : EnemyBaseState
 
     public override void Tick(float deltaTime)
     {
-        Debug.Log("Target");
+        DetectEnemies();
+        if(stateMachine.enemiesInRangeList.Count>0) stateMachine.SwitchState(new EnemyDodgeState(stateMachine));
+        
         SwitchToRandomMovingState();
         TargetFood();
     }
@@ -31,7 +33,7 @@ public class EnemyTargetFoodState : EnemyBaseState
     
     private void TargetFood()
     {
-        RefreshArray();
+        RefreshArray(stateMachine.foodInRangeCollider);
         
         Physics.OverlapSphereNonAlloc(stateMachine.headTransform.position, stateMachine.foodDetectionRadius, stateMachine.foodInRangeCollider,
             LayerMask.GetMask("Food"));
@@ -55,14 +57,7 @@ public class EnemyTargetFoodState : EnemyBaseState
     }
 
 
-    private void RefreshArray()
-    {
-        for (int i = 0; i < stateMachine.foodInRangeCollider.Length; i++)
-        {
-            stateMachine.foodInRangeCollider[i] = null;
-        }
-    }
-
+    
     private void SwitchToRandomMovingState()
     {
         List<Collider> colliderList = stateMachine.foodInRangeCollider.ToList();

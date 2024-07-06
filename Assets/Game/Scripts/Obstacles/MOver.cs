@@ -7,7 +7,7 @@ public class MOver : MonoBehaviour
 {
     [SerializeField] private Transform startingPosition;
     [SerializeField] private Transform endingPosition;
-    [SerializeField] private float speed = 5f;
+  
 
     private Rigidbody rb;
 

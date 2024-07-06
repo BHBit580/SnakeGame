@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyRandomPosition : EnemyBaseState , IHasCoolDown
@@ -15,7 +16,8 @@ public class EnemyRandomPosition : EnemyBaseState , IHasCoolDown
 
     public override void Tick(float deltaTime)
     {
-        Debug.Log("Random");
+        DetectEnemies();
+        if(stateMachine.enemiesInRangeList.Count>0) stateMachine.SwitchState(new EnemyDodgeState(stateMachine));
         
         SwitchToTargetFoodState();
         TargetRandomPositions();
@@ -25,6 +27,9 @@ public class EnemyRandomPosition : EnemyBaseState , IHasCoolDown
     {
         
     }
+    
+    
+    
     
     
     private void SwitchToTargetFoodState()

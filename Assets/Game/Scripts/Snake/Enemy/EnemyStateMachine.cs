@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -8,9 +6,8 @@ using Vector3 = UnityEngine.Vector3;
 
 public class EnemyStateMachine : StateMachine, ISnake 
 {
-     [Header("References")]
+    [Header("References")]
     public CoolDownSystem coolDownSystem;
-    public List<Collider> enemiesInRangeList;
     [SerializeField] private List<Transform> bodyPartsList = new List<Transform>();
     
     [Header("Values")]
@@ -22,7 +19,6 @@ public class EnemyStateMachine : StateMachine, ISnake
     [Header("AI")]
     public float foodDetectionRadius = 4.5f;
     public float enemyDetectionRadius = 1.5f;
-    public float randomPositionRadius = 5f;
     public float randomPositionTimer = 1f;
     
     
@@ -36,24 +32,25 @@ public class EnemyStateMachine : StateMachine, ISnake
     private Transform curBodyPart;
     private Transform PrevBodyPart;
     private Tween currentRotateTween;
+    
     public Collider[] foodInRangeCollider = new Collider[10];
+    public List<Collider> enemiesInRangeList = new List<Collider>();
 
 
 
     private void Start()
     {
-        ;
         UniqueID = Random.Range(0, 100000);
         
         headTransform = bodyPartsList[0].transform;
         SnakeHead snakeHead = GetComponentInChildren<SnakeHead>();
 
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < 3; i++)
         {
             snakeHead.AddBodyPart();
         }
 
-        SwitchState(new EnemyTargetFoodState(this));
+        SwitchState(new EnemyRandomPosition(this));
     }
 
     protected override void Update()
@@ -63,8 +60,6 @@ public class EnemyStateMachine : StateMachine, ISnake
         MoveBodyParts(); 
     }
     
-    
-
     
     public void RotateHead(Vector3 directionVector)
     {
@@ -85,15 +80,6 @@ public class EnemyStateMachine : StateMachine, ISnake
         currentRotateTween.onComplete += () => IsRotating = false;
     }
     
-    
-    private void DodgeEnemy()
-    {
-        Collider[] enemiesInRange = Physics.OverlapSphere(headTransform.position, enemyDetectionRadius, LayerMask.GetMask("BodyPart"));
-        enemiesInRangeList = enemiesInRange.Where(collider => collider.transform.root != transform.root).ToList();
-        Vector3 awayFromPlayer = transform.position - enemiesInRange[0].transform.position;
-        awayFromPlayer = transform.position + awayFromPlayer.normalized * 5f;
-        targetPosition = awayFromPlayer;
-    }
     
     private void MoveBodyParts()
     {
@@ -133,8 +119,11 @@ public class EnemyStateMachine : StateMachine, ISnake
         Gizmos.DrawWireSphere(bodyPartsList[0].transform.position, enemyDetectionRadius);
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(bodyPartsList[0].transform.position, foodDetectionRadius);
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(bodyPartsList[0].transform.position, randomPositionRadius);
+    }
+
+    private void OnDestroy()
+    {
+        currentRotateTween.Kill();
     }
 }
 

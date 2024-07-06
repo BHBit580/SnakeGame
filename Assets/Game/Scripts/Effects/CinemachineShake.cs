@@ -6,13 +6,8 @@ using UnityEngine;
 
 public class CinemachineShake : GenericSingleton<CinemachineShake>
 {
-    private CinemachineVirtualCamera cinemachineVirtualCamera;
+    [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
     private float shakeTimer;
-
-    private void Awake()
-    {
-        cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
-    }
     
     public void ShakeCamera(float intensity, float time)
     {

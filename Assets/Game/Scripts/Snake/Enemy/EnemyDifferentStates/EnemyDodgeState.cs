@@ -1,18 +1,44 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class EnemyDodgeState : MonoBehaviour
+public class EnemyDodgeState : EnemyBaseState
 {
-    // Start is called before the first frame update
-    void Start()
+    
+    private Collider target;
+    public EnemyDodgeState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Enter()
+    {
+        DodgeEnemy();
+    }
+
+    public override void Tick(float deltaTime)
+    {
+        if(stateMachine.enemiesInRangeList.Count() ==0) stateMachine.SwitchState(new EnemyRandomPosition(stateMachine));
+        
+        DodgeEnemy();
+    }
+
+    public override void Exit()
     {
         
     }
+    
+    private void DodgeEnemy()
+    {
+        DetectEnemies();
+        
+        if(stateMachine.enemiesInRangeList.Count ==0) return;
+        
+        target = stateMachine.enemiesInRangeList.FirstOrDefault(collider => collider.gameObject.name == "SnakeHead") ?? stateMachine.enemiesInRangeList[0];
+        
+        Vector3 direction = (stateMachine.headTransform.position - target.transform.position);
+        stateMachine.RotateHead(direction);
+    }
+    
+    
+    
+    
 }

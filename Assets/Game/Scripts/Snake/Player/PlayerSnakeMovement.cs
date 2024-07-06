@@ -15,7 +15,6 @@ public class PlayerSnakeMovement : MonoBehaviour , ISnake{
     [Header("Values")]
     [SerializeField] private float minDistance = 0.25f;
     [SerializeField] private float speed = 1;
-    [SerializeField] private float fastSpeed = 2;
     [SerializeField] private float rotationSpeed = 50;
     
     
