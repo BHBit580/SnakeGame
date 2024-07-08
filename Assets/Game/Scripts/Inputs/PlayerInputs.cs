@@ -31,7 +31,16 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""name"": ""HorizontalMove"",
                     ""type"": ""Value"",
                     ""id"": ""0f620912-c29a-4a93-b14e-d437e1c6b6fd"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MousePosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""02114399-cedf-4e6a-a55c-349bead8fc6d"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -136,6 +145,17 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""HorizontalMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""358a34f5-70f4-43f8-89dd-b191844a93fb"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -145,6 +165,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         // New action map
         m_Newactionmap = asset.FindActionMap("New action map", throwIfNotFound: true);
         m_Newactionmap_HorizontalMove = m_Newactionmap.FindAction("HorizontalMove", throwIfNotFound: true);
+        m_Newactionmap_MousePosition = m_Newactionmap.FindAction("MousePosition", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -207,11 +228,13 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Newactionmap;
     private List<INewactionmapActions> m_NewactionmapActionsCallbackInterfaces = new List<INewactionmapActions>();
     private readonly InputAction m_Newactionmap_HorizontalMove;
+    private readonly InputAction m_Newactionmap_MousePosition;
     public struct NewactionmapActions
     {
         private @PlayerInputs m_Wrapper;
         public NewactionmapActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @HorizontalMove => m_Wrapper.m_Newactionmap_HorizontalMove;
+        public InputAction @MousePosition => m_Wrapper.m_Newactionmap_MousePosition;
         public InputActionMap Get() { return m_Wrapper.m_Newactionmap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -224,6 +247,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @HorizontalMove.started += instance.OnHorizontalMove;
             @HorizontalMove.performed += instance.OnHorizontalMove;
             @HorizontalMove.canceled += instance.OnHorizontalMove;
+            @MousePosition.started += instance.OnMousePosition;
+            @MousePosition.performed += instance.OnMousePosition;
+            @MousePosition.canceled += instance.OnMousePosition;
         }
 
         private void UnregisterCallbacks(INewactionmapActions instance)
@@ -231,6 +257,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @HorizontalMove.started -= instance.OnHorizontalMove;
             @HorizontalMove.performed -= instance.OnHorizontalMove;
             @HorizontalMove.canceled -= instance.OnHorizontalMove;
+            @MousePosition.started -= instance.OnMousePosition;
+            @MousePosition.performed -= instance.OnMousePosition;
+            @MousePosition.canceled -= instance.OnMousePosition;
         }
 
         public void RemoveCallbacks(INewactionmapActions instance)
@@ -251,5 +280,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     public interface INewactionmapActions
     {
         void OnHorizontalMove(InputAction.CallbackContext context);
+        void OnMousePosition(InputAction.CallbackContext context);
     }
 }

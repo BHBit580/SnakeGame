@@ -9,7 +9,16 @@
                     "name": "HorizontalMove",
                     "type": "Value",
                     "id": "0f620912-c29a-4a93-b14e-d437e1c6b6fd",
-                    "expectedControlType": "",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "MousePosition",
+                    "type": "Value",
+                    "id": "02114399-cedf-4e6a-a55c-349bead8fc6d",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -114,6 +123,17 @@
                     "action": "HorizontalMove",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "358a34f5-70f4-43f8-89dd-b191844a93fb",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

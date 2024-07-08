@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -23,25 +24,33 @@ public class PlayerSnakeMovement : MonoBehaviour , ISnake{
     private float dis;
     private Transform curBodyPart;
     private Transform PrevBodyPart;
-    
-    
+    private Vector3 directionVector;
+    private Transform headTransform;
+    private float rotationAngle;
+
+    private void Start()
+    {
+        headTransform = bodyPartsList[0].transform;
+    }
 
     private void Update()
     {
-        
+        RotateHead();
         MoveHead();
         MoveBodyParts();
     }
 
     private void MoveHead()
     {
-        if (inputReader.HorizontalInput != 0)
-        {
-            bodyPartsList[0].Rotate(Vector3.up * (rotationSpeed * Time.deltaTime * inputReader.HorizontalInput));
-        }
-        
-        
-        bodyPartsList[0].Translate(bodyPartsList[0].forward * (speed * Time.deltaTime), Space.World);
+        headTransform.Translate(headTransform.forward * (speed * Time.deltaTime), Space.World);
+    }
+
+    private void RotateHead()
+    {
+        Vector3 targetDirection = inputReader.MouseWorldPosition - headTransform.position;
+        float singleStep = rotationSpeed * Time.deltaTime;
+        Vector3 newDirection = Vector3.RotateTowards(headTransform.forward, targetDirection, singleStep, 0.0f);
+        headTransform.rotation = Quaternion.Euler(0, Quaternion.LookRotation(newDirection).eulerAngles.y, 0);
     }
 
     
@@ -56,7 +65,7 @@ public class PlayerSnakeMovement : MonoBehaviour , ISnake{
 
             Vector3 newpos = PrevBodyPart.position;
 
-            newpos.y = bodyPartsList[0].position.y;
+            newpos.y = headTransform.position.y;
 
             float T = Time.deltaTime * dis / minDistance * speed;
 
@@ -76,9 +85,4 @@ public class PlayerSnakeMovement : MonoBehaviour , ISnake{
     {
         return bodyPartsList;
     }
-
-    
-
-
-
 }
