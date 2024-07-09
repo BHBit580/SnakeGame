@@ -8,7 +8,7 @@ using Vector3 = UnityEngine.Vector3;
 public class EnemyStateMachine : StateMachine, ISnake 
 {
     [Header("References")]
-    public CoolDownSystem coolDownSystem;
+    
     [SerializeField] private List<Transform> bodyPartsList = new List<Transform>();
     
     [Header("Values")]
@@ -33,7 +33,7 @@ public class EnemyStateMachine : StateMachine, ISnake
     private Transform curBodyPart;
     private Transform PrevBodyPart;
     private Tween currentRotateTween;
-
+    public CoolDownSystem coolDownSystem { get; private set; }
     public TextMeshProUGUI textUI;
     public Collider[] foodInRangeCollider = new Collider[10];
     public List<Collider> enemiesInRangeList = new List<Collider>();
@@ -42,6 +42,7 @@ public class EnemyStateMachine : StateMachine, ISnake
 
     private void Start()
     {
+        coolDownSystem = Utils.Instance.CoolDownSystem;
         UniqueID = Random.Range(0, 100000);
         
         headTransform = bodyPartsList[0].transform;

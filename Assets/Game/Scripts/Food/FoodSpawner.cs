@@ -3,12 +3,6 @@ using UnityEngine;
 
 public class FoodSpawner : GenericSingleton<FoodSpawner>
 {
-    [Header("Food Spawner Area Range")]
-    [SerializeField] private float minX;
-    [SerializeField] private float maxX;
-    [SerializeField] private float minZ;
-    [SerializeField] private float maxZ;
-
     [SerializeField] private int noToSpawn;
     [SerializeField] private GameObject foodPrefab;
     
@@ -22,9 +16,8 @@ public class FoodSpawner : GenericSingleton<FoodSpawner>
     
     private Vector3 GenerateRandomPosition()
     {
-        float x = Random.Range(minX, maxX);
-        float z = Random.Range(minZ, maxZ);
-        return new Vector3(x, 1.5f, z);
+        Vector2 position = Utils.Instance.GetRandomSpawnPositionInsideSpawnArea();
+        return new Vector3(position.x, 1.5f, position.y);
     }
 
     private void Update()
