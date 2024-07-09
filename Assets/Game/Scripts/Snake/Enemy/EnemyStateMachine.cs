@@ -45,13 +45,14 @@ public class EnemyStateMachine : StateMachine, ISnake
         UniqueID = Random.Range(0, 100000);
         
         headTransform = bodyPartsList[0].transform;
-        SnakeHead snakeHead = GetComponentInChildren<SnakeHead>();
 
-        for (int i = 0; i < 3; i++)
+        SnakeGrowthManager snakeGrowthManager = GetComponentInChildren<SnakeGrowthManager>();
+
+        for (int i = 0; i < 25; i++)
         {
-            snakeHead.AddBodyPart();
+            snakeGrowthManager.AddBodyPart(this);
         }
-
+        
         SwitchState(new EnemyRandomPosition(this));
     }
 

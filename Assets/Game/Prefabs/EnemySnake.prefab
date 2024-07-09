@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7062594429479985616}
   - component: {fileID: 7703114837950515552}
   - component: {fileID: 2733403518998930760}
+  - component: {fileID: 6127827892814701316}
   m_Layer: 8
   m_Name: SnakeHead
   m_TagString: BodyPart
@@ -122,8 +123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f36705022289df14d812b88f62e786f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beadsPrefab: {fileID: 3391621990662516740, guid: 53bfe8410661a584a85b516962e6090f,
-    type: 3}
 --- !u!54 &2733403518998930760
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -151,6 +150,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 36
   m_CollisionDetection: 0
+--- !u!114 &6127827892814701316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782337093387393691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edb1bc1a06b9fdb408f0587c275575b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beadsPrefab: {fileID: 3391621990662516740, guid: 53bfe8410661a584a85b516962e6090f,
+    type: 3}
+  minScale: 0.7
+  maxScale: 1.5
+  sizeAdditiveFactor: 0.5
 --- !u!1 &2654913942750846815
 GameObject:
   m_ObjectHideFlags: 0
