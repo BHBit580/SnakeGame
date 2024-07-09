@@ -11,6 +11,7 @@ public class EnemyDodgeState : EnemyBaseState
 
     public override void Enter()
     {
+        stateMachine.textUI.text = "Dodge";
         DodgeEnemy();
     }
 

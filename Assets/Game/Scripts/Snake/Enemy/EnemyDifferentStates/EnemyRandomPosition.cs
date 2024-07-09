@@ -11,6 +11,7 @@ public class EnemyRandomPosition : EnemyBaseState , IHasCoolDown
 
     public override void Enter()
     {
+        stateMachine.textUI.text = "Random";
         TargetRandomPositions();
     }
 

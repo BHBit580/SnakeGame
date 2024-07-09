@@ -1,9 +1,7 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodSpawner : MonoBehaviour
+public class FoodSpawner : GenericSingleton<FoodSpawner>
 {
     [Header("Food Spawner Area Range")]
     [SerializeField] private float minX;
@@ -19,19 +17,13 @@ public class FoodSpawner : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < noToSpawn; i++)
-        {
-            GameObject food = Instantiate(foodPrefab, GenerateRandomPosition(), Quaternion.identity);
-            food.layer = LayerMask.NameToLayer("Food");
-            food.transform.SetParent(transform);
-            foodList.Add(food);
-        }
+        SpawnFood(noToSpawn);
     }
     
     private Vector3 GenerateRandomPosition()
     {
-        float x = UnityEngine.Random.Range(minX, maxX);
-        float z = UnityEngine.Random.Range(minZ, maxZ);
+        float x = Random.Range(minX, maxX);
+        float z = Random.Range(minZ, maxZ);
         return new Vector3(x, 1.5f, z);
     }
 
@@ -47,9 +39,32 @@ public class FoodSpawner : MonoBehaviour
             if (foodList[i] == null)
             {
                 foodList.RemoveAt(i);
+                SpawnFood(1);
             }
         }
     }
-    
-    
+
+    private void SpawnFood(int number)
+    {
+        for (int i = 0; i < number; i++)
+        {
+            Quaternion randomAngle = Quaternion.Euler(Random.Range(0, 360), 
+                Random.Range(0, 360), Random.Range(0, 360));
+            GameObject food = Instantiate(foodPrefab, GenerateRandomPosition(), randomAngle);
+            food.layer = LayerMask.NameToLayer("Food");
+            food.transform.SetParent(transform);
+            foodList.Add(food);
+        }
+    }
+
+    public void SpawnFoodOnDeath(List<Transform> beadsTransform)
+    {
+        foreach (Transform bead in beadsTransform)
+        {
+            GameObject food = Instantiate(foodPrefab, bead.position, bead.rotation);
+            food.layer = LayerMask.NameToLayer("Food");
+            food.transform.SetParent(transform);
+            foodList.Add(food);
+        }
+    }
 }

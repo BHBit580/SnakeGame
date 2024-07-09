@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
@@ -32,7 +33,8 @@ public class EnemyStateMachine : StateMachine, ISnake
     private Transform curBodyPart;
     private Transform PrevBodyPart;
     private Tween currentRotateTween;
-    
+
+    public TextMeshProUGUI textUI;
     public Collider[] foodInRangeCollider = new Collider[10];
     public List<Collider> enemiesInRangeList = new List<Collider>();
 

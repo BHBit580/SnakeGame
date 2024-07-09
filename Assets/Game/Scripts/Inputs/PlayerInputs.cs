@@ -28,15 +28,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             ""id"": ""acd2748c-fdd5-4a79-9750-819d565a6430"",
             ""actions"": [
                 {
-                    ""name"": ""HorizontalMove"",
-                    ""type"": ""Value"",
-                    ""id"": ""0f620912-c29a-4a93-b14e-d437e1c6b6fd"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""MousePosition"",
                     ""type"": ""Value"",
                     ""id"": ""02114399-cedf-4e6a-a55c-349bead8fc6d"",
@@ -44,108 +35,18 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""FastSpeed"",
+                    ""type"": ""Button"",
+                    ""id"": ""7d280558-638c-4e31-bdec-bb06218b5e80"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": ""1D Axis (AD)"",
-                    ""id"": ""db2f63dc-5bdc-4ef4-8b9d-e0e5458f0350"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HorizontalMove"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""7bbb9e47-4e15-4fb2-bb44-713acffd12fa"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HorizontalMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""9283df23-b92b-4dd7-8ff4-e9155fd73125"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HorizontalMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""1D Axis (Arrow)"",
-                    ""id"": ""49ae2244-e2c9-4e68-a72e-08e9880deae6"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HorizontalMove"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""15441c5b-89b4-4378-a026-53d2e6eafe78"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HorizontalMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""b0469fe3-55b1-4fe0-bc5e-b5845490baf2"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HorizontalMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Touch"",
-                    ""id"": ""a7fdeaf9-2a22-41cc-8030-a3f50b4103d3"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HorizontalMove"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""bfe981e0-862f-49b7-bce9-d96b358db344"",
-                    ""path"": ""<Touchscreen>/delta/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HorizontalMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""5fd02007-120b-42c9-bb02-4bceaa0b86a8"",
-                    ""path"": ""<Touchscreen>/delta/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HorizontalMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
                 {
                     ""name"": """",
                     ""id"": ""358a34f5-70f4-43f8-89dd-b191844a93fb"",
@@ -156,6 +57,28 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""MousePosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""80a75ec8-22f7-4992-a8e4-af19fa87a604"",
+                    ""path"": ""<Touchscreen>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f5831eb2-c7ab-42d5-9c7e-69b947761526"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FastSpeed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -164,8 +87,8 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
 }");
         // New action map
         m_Newactionmap = asset.FindActionMap("New action map", throwIfNotFound: true);
-        m_Newactionmap_HorizontalMove = m_Newactionmap.FindAction("HorizontalMove", throwIfNotFound: true);
         m_Newactionmap_MousePosition = m_Newactionmap.FindAction("MousePosition", throwIfNotFound: true);
+        m_Newactionmap_FastSpeed = m_Newactionmap.FindAction("FastSpeed", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -227,14 +150,14 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     // New action map
     private readonly InputActionMap m_Newactionmap;
     private List<INewactionmapActions> m_NewactionmapActionsCallbackInterfaces = new List<INewactionmapActions>();
-    private readonly InputAction m_Newactionmap_HorizontalMove;
     private readonly InputAction m_Newactionmap_MousePosition;
+    private readonly InputAction m_Newactionmap_FastSpeed;
     public struct NewactionmapActions
     {
         private @PlayerInputs m_Wrapper;
         public NewactionmapActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
-        public InputAction @HorizontalMove => m_Wrapper.m_Newactionmap_HorizontalMove;
         public InputAction @MousePosition => m_Wrapper.m_Newactionmap_MousePosition;
+        public InputAction @FastSpeed => m_Wrapper.m_Newactionmap_FastSpeed;
         public InputActionMap Get() { return m_Wrapper.m_Newactionmap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -244,22 +167,22 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_NewactionmapActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_NewactionmapActionsCallbackInterfaces.Add(instance);
-            @HorizontalMove.started += instance.OnHorizontalMove;
-            @HorizontalMove.performed += instance.OnHorizontalMove;
-            @HorizontalMove.canceled += instance.OnHorizontalMove;
             @MousePosition.started += instance.OnMousePosition;
             @MousePosition.performed += instance.OnMousePosition;
             @MousePosition.canceled += instance.OnMousePosition;
+            @FastSpeed.started += instance.OnFastSpeed;
+            @FastSpeed.performed += instance.OnFastSpeed;
+            @FastSpeed.canceled += instance.OnFastSpeed;
         }
 
         private void UnregisterCallbacks(INewactionmapActions instance)
         {
-            @HorizontalMove.started -= instance.OnHorizontalMove;
-            @HorizontalMove.performed -= instance.OnHorizontalMove;
-            @HorizontalMove.canceled -= instance.OnHorizontalMove;
             @MousePosition.started -= instance.OnMousePosition;
             @MousePosition.performed -= instance.OnMousePosition;
             @MousePosition.canceled -= instance.OnMousePosition;
+            @FastSpeed.started -= instance.OnFastSpeed;
+            @FastSpeed.performed -= instance.OnFastSpeed;
+            @FastSpeed.canceled -= instance.OnFastSpeed;
         }
 
         public void RemoveCallbacks(INewactionmapActions instance)
@@ -279,7 +202,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     public NewactionmapActions @Newactionmap => new NewactionmapActions(this);
     public interface INewactionmapActions
     {
-        void OnHorizontalMove(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
+        void OnFastSpeed(InputAction.CallbackContext context);
     }
 }

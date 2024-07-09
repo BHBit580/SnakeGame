@@ -14,7 +14,7 @@ public class EnemyTargetFoodState : EnemyBaseState
 
     public override void Enter()
     {
-        
+        stateMachine.textUI.text = "Target Food";
     }
 
     public override void Tick(float deltaTime)

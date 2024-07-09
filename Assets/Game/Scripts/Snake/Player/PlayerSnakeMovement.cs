@@ -15,7 +15,8 @@ public class PlayerSnakeMovement : MonoBehaviour , ISnake{
     
     [Header("Values")]
     [SerializeField] private float minDistance = 0.25f;
-    [SerializeField] private float speed = 1;
+    [SerializeField] private float normalSpeed = 1;
+    [SerializeField] private float fastSpeed = 2;
     [SerializeField] private float rotationSpeed = 50;
     
     
@@ -27,6 +28,7 @@ public class PlayerSnakeMovement : MonoBehaviour , ISnake{
     private Vector3 directionVector;
     private Transform headTransform;
     private float rotationAngle;
+    private float currentSpeed;
 
     private void Start()
     {
@@ -42,7 +44,8 @@ public class PlayerSnakeMovement : MonoBehaviour , ISnake{
 
     private void MoveHead()
     {
-        headTransform.Translate(headTransform.forward * (speed * Time.deltaTime), Space.World);
+        currentSpeed = inputReader.IsFastSpeed ? fastSpeed : normalSpeed;
+        headTransform.Translate(headTransform.forward * (currentSpeed * Time.deltaTime), Space.World);
     }
 
     private void RotateHead()
@@ -67,7 +70,7 @@ public class PlayerSnakeMovement : MonoBehaviour , ISnake{
 
             newpos.y = headTransform.position.y;
 
-            float T = Time.deltaTime * dis / minDistance * speed;
+            float T = Time.deltaTime * dis / minDistance * currentSpeed;
 
             if (T > 0.5f)
                 T = 0.5f;

@@ -6,11 +6,12 @@ using UnityEngine.InputSystem;
 
 public class InputReader : MonoBehaviour , PlayerInputs.INewactionmapActions
 {
-    public float HorizontalInput { get; private set; }
+    public bool IsFastSpeed { get; private set; }
     public Vector3 MouseWorldPosition { get; private set; }
     
     private PlayerInputs playerInputs;
     private Camera mainCamera;
+    private Vector2 currentRawMousePosition;
 
     private void Awake()
     {
@@ -19,15 +20,32 @@ public class InputReader : MonoBehaviour , PlayerInputs.INewactionmapActions
         playerInputs.Newactionmap.SetCallbacks(this); 
         playerInputs.Newactionmap.Enable();
     }
-
-    public void OnHorizontalMove(InputAction.CallbackContext context)
+    
+    public void OnFastSpeed(InputAction.CallbackContext context)
     {
-        HorizontalInput = context.ReadValue<float>();
+        if (context.performed)
+        {
+            IsFastSpeed = true;
+        }
+        else if (context.canceled)
+        {
+            IsFastSpeed = false;
+        }
     }
-
+    
     public void OnMousePosition(InputAction.CallbackContext context)
     {
-        Vector2 rawMousePosition = context.ReadValue<Vector2>();
+        //Unfortunately this function is only called when the mouse is moving, but we want Raycast in every frame
+        currentRawMousePosition = context.ReadValue<Vector2>();
+    }
+    
+    private void Update()
+    {
+        DoRaycasting(currentRawMousePosition);
+    }
+
+    private void DoRaycasting(Vector2 rawMousePosition)
+    {
         Ray ray = mainCamera.ScreenPointToRay(rawMousePosition);
         if(Physics.Raycast(ray, out RaycastHit hit))
         {
