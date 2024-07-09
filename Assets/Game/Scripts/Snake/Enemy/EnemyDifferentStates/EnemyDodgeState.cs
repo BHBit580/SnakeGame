@@ -33,10 +33,19 @@ public class EnemyDodgeState : EnemyBaseState
         
         if(stateMachine.enemiesInRangeList.Count ==0) return;
         
-        target = stateMachine.enemiesInRangeList.FirstOrDefault(collider => collider.gameObject.name == "SnakeHead") ?? stateMachine.enemiesInRangeList[0];
+        //target = stateMachine.enemiesInRangeList.FirstOrDefault(collider => collider.gameObject.name == "SnakeHead") ?? stateMachine.enemiesInRangeList[0];
+        //Vector3 direction = (stateMachine.headTransform.position - target.transform.position);
+
+        Vector3 averageDirection = Vector3.zero;
         
-        Vector3 direction = (stateMachine.headTransform.position - target.transform.position);
-        stateMachine.RotateHead(direction);
+        foreach (var enemy in stateMachine.enemiesInRangeList)
+        {
+            averageDirection += (stateMachine.headTransform.position - enemy.transform.position);
+        }
+        
+        averageDirection /= stateMachine.enemiesInRangeList.Count;
+        
+        stateMachine.RotateHead(averageDirection);
     }
     
     

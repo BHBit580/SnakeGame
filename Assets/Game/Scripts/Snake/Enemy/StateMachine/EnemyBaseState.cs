@@ -12,7 +12,7 @@ public abstract class EnemyBaseState : State
         this.stateMachine = stateMachine;
     }
     
-    protected void DetectEnemies()
+    protected bool DetectEnemies()
     {
         stateMachine.enemiesInRangeList.Clear();                                        
         RefreshArray(enemiesArray);
@@ -20,6 +20,8 @@ public abstract class EnemyBaseState : State
         Physics.OverlapSphereNonAlloc(stateMachine.headTransform.position, stateMachine.enemyDetectionRadius, enemiesArray , 
             LayerMask.GetMask("BodyPart") , QueryTriggerInteraction.Collide);
         stateMachine.enemiesInRangeList = ExcludeOwnElements();
+        
+        return stateMachine.enemiesInRangeList.Count > 0;
     }
     
     private List<Collider> ExcludeOwnElements()

@@ -19,8 +19,7 @@ public class EnemyTargetFoodState : EnemyBaseState
 
     public override void Tick(float deltaTime)
     {
-        DetectEnemies();
-        if(stateMachine.enemiesInRangeList.Count>0) stateMachine.SwitchState(new EnemyDodgeState(stateMachine));
+        if(DetectEnemies()) stateMachine.SwitchState(new EnemyDodgeState(stateMachine));
         
         SwitchToRandomMovingState();
         TargetFood();
