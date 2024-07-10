@@ -22,6 +22,8 @@ public class EnemyStateMachine : StateMachine, ISnake
     public float enemyDetectionRadius = 1.5f;
     public float randomPositionTimer = 1f;
     
+    public float range;
+    
     
     public int UniqueID { get;private set;}
     public bool IsRotating { get; set; }
@@ -49,18 +51,18 @@ public class EnemyStateMachine : StateMachine, ISnake
 
         SnakeGrowthManager snakeGrowthManager = GetComponentInChildren<SnakeGrowthManager>();
 
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < 5; i++)
         {
             snakeGrowthManager.AddBodyPart(this);
         }
         
-        SwitchState(new EnemyRandomPosition(this));
+        SwitchState(new EnemyDodgeState(this));
     }
 
     protected override void Update()
     {
         base.Update();
-        headTransform.Translate(headTransform.forward * (speed * Time.deltaTime));
+        headTransform.Translate(headTransform.forward * (speed * Time.deltaTime) , Space.World);
         MoveBodyParts(); 
     }
     
@@ -73,7 +75,7 @@ public class EnemyStateMachine : StateMachine, ISnake
         {
             currentRotateTween.Kill();
         }
-        
+        Debug.DrawRay(headTransform.position , directionVector , Color.yellow);
         float angle = Vector3.Angle(headTransform.forward, directionVector);                     
         
         if (Vector3.Cross( directionVector , headTransform.forward).y > 0) angle = -angle;                  
@@ -119,12 +121,17 @@ public class EnemyStateMachine : StateMachine, ISnake
     
     private void OnDrawGizmos()
     {
+        Vector3 origin = bodyPartsList[0].transform.position;
+        Vector3 direction = bodyPartsList[0].transform.forward;
+        
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(bodyPartsList[0].transform.position, enemyDetectionRadius);
+        Gizmos.DrawLine(origin, origin + direction * range);
+        Gizmos.DrawWireSphere(origin + direction * range, enemyDetectionRadius);
+        
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(bodyPartsList[0].transform.position, foodDetectionRadius);
+        Gizmos.DrawWireSphere(origin, foodDetectionRadius);
     }
-
+    
     private void OnDestroy()
     {
         currentRotateTween.Kill();

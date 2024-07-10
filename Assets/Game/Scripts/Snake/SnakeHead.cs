@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SnakeHead : MonoBehaviour
 {
-    private SnakeGrowthManager growthManager;
+    [SerializeField] private SnakeGrowthManager growthManager;
     private ISnake iMySnake;
 
     private void Awake()
@@ -15,7 +15,6 @@ public class SnakeHead : MonoBehaviour
 
     private void Start()
     {
-        growthManager = GetComponent<SnakeGrowthManager>();
         transform.gameObject.layer = LayerMask.NameToLayer("BodyPart");
     }
 
@@ -27,13 +26,17 @@ public class SnakeHead : MonoBehaviour
             growthManager.AddBodyPart(iMySnake);
         }
         
-        
-        
         if (other.gameObject.CompareTag("BodyPart")) 
         {
             ISnake interfaceOfOther = other.GetComponentInParent<ISnake>();
             if(interfaceOfOther == iMySnake) return;                                   // return as it's our own body part
             
+            FoodSpawner.Instance.SpawnFoodOnDeath(iMySnake.GetSnakeBeadsList());
+            Destroy(transform.parent.gameObject);
+        }
+
+        if (other.gameObject.CompareTag("Wall"))
+        {
             FoodSpawner.Instance.SpawnFoodOnDeath(iMySnake.GetSnakeBeadsList());
             Destroy(transform.parent.gameObject);
         }

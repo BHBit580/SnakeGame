@@ -80,7 +80,6 @@ GameObject:
   - component: {fileID: 3484481383528608304}
   - component: {fileID: 3542966561418075665}
   - component: {fileID: 1887699571201997574}
-  - component: {fileID: 6363403719688330553}
   - component: {fileID: 5783969365872485561}
   m_Layer: 8
   m_Name: SnakeHead
@@ -98,7 +97,7 @@ Transform:
   m_GameObject: {fileID: 6436272838274292423}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.35, y: 1.5, z: -2.14}
+  m_LocalPosition: {x: 15.35, y: 1.5, z: -0.55}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -217,22 +216,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a05f4ba7b7f64e4a86dff463a54f984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6363403719688330553
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6436272838274292423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad63160c556f51944824323456aab45d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minWallX: {fileID: 0}
-  maxWallX: {fileID: 0}
-  minWallZ: {fileID: 0}
-  maxWallZ: {fileID: 0}
+  growthManager: {fileID: 5783969365872485561}
+  playerDied: {fileID: 11400000, guid: dca24e1497941964b9b01ae0d90e259a, type: 2}
 --- !u!114 &5783969365872485561
 MonoBehaviour:
   m_ObjectHideFlags: 0

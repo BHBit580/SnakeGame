@@ -11,6 +11,27 @@ public abstract class EnemyBaseState : State
     {
         this.stateMachine = stateMachine;
     }
+
+    protected bool DetectChEnemies(out Collider enemyCollider)
+    {
+        Ray ray = new Ray(stateMachine.headTransform.position, stateMachine.headTransform.forward);
+        
+        if (Physics.SphereCast(ray, stateMachine.enemyDetectionRadius,
+                out RaycastHit hitInfo,  stateMachine.range, LayerMask.GetMask("BodyPart" , "Wall"), QueryTriggerInteraction.Collide))
+        {
+            if (hitInfo.collider == null || hitInfo.transform.parent.gameObject == stateMachine.transform.gameObject)
+            {
+                enemyCollider = null;
+                return false;
+            }
+            
+            enemyCollider = hitInfo.collider;
+            return true;
+        }
+        
+        enemyCollider = null;
+        return false;
+    }
     
     protected bool DetectEnemies()
     {

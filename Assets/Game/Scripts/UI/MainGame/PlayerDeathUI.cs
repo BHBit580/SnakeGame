@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerDeathUI : MonoBehaviour
 {
@@ -27,6 +28,16 @@ public class PlayerDeathUI : MonoBehaviour
         }
     }
 
+    public void ReplayLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void GoToSceneMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+    
     private void OnDestroy()
     {
         playerDiedEvent.UnregisterListener(ShowDeathUI);

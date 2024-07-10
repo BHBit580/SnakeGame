@@ -17,7 +17,7 @@ public class EnemyDodgeState : EnemyBaseState
 
     public override void Tick(float deltaTime)
     {
-        if(stateMachine.enemiesInRangeList.Count() ==0) stateMachine.SwitchState(new EnemyRandomPosition(stateMachine));
+        if(DetectChEnemies(out Collider col) == false) stateMachine.SwitchState(new EnemyRandomPosition(stateMachine));
         
         DodgeEnemy();
     }
@@ -29,26 +29,32 @@ public class EnemyDodgeState : EnemyBaseState
     
     private void DodgeEnemy()
     {
-        DetectEnemies();
-        
-        if(stateMachine.enemiesInRangeList.Count ==0) return;
-        
-        //target = stateMachine.enemiesInRangeList.FirstOrDefault(collider => collider.gameObject.name == "SnakeHead") ?? stateMachine.enemiesInRangeList[0];
-        //Vector3 direction = (stateMachine.headTransform.position - target.transform.position);
-
-        Vector3 averageDirection = Vector3.zero;
-        
-        foreach (var enemy in stateMachine.enemiesInRangeList)
+        if (DetectChEnemies(out Collider enemyCollider))
         {
-            averageDirection += (stateMachine.headTransform.position - enemy.transform.position);
+            Vector3 avoidDirection = Vector3.zero;
+            avoidDirection = Vector3.Reflect((enemyCollider.transform.position - stateMachine.transform.position),
+                enemyCollider.transform.right);
+            
+            
+            stateMachine.RotateHead(avoidDirection);
         }
-        
-        averageDirection /= stateMachine.enemiesInRangeList.Count;
-        
-        stateMachine.RotateHead(averageDirection);
     }
     
     
     
     
 }
+
+/*if(stateMachine.enemiesInRangeList.Count ==0) return;
+        
+//target = stateMachine.enemiesInRangeList.FirstOrDefault(collider => collider.gameObject.name == "SnakeHead") ?? stateMachine.enemiesInRangeList[0];
+//Vector3 direction = (stateMachine.headTransform.position - target.transform.position);
+
+Vector3 averageDirection = Vector3.zero;
+        
+foreach (var enemy in stateMachine.enemiesInRangeList)
+{
+    averageDirection += (stateMachine.headTransform.position - enemy.transform.position);
+}
+        
+averageDirection /= stateMachine.enemiesInRangeList.Count;*/

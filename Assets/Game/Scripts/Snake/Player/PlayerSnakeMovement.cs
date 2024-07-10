@@ -33,6 +33,7 @@ public class PlayerSnakeMovement : MonoBehaviour , ISnake{
     private void Start()
     {
         headTransform = bodyPartsList[0].transform;
+        SnakeGrowthManager snakeGrowthManager = GetComponentInChildren<SnakeGrowthManager>();
     }
 
     private void Update()
