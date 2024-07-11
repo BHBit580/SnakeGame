@@ -1,13 +1,15 @@
-using System;
-using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class Learn : MonoBehaviour
 {
     public float range = 2f;
     public float enemyDetectionRadius = 1.5f;
-    
+    public float speed = 2f;
+    public float rotationSpeed = 4f;
+    public float avoidanceAngle = 15f; 
+
+   
+
     private void OnDrawGizmos()
     {
         Vector3 origin = transform.position;
@@ -20,33 +22,49 @@ public class Learn : MonoBehaviour
 
     private void Update()
     {
-        DetectChEnemies();
+        DetectAndAvoidObstacles();
+        transform.Translate(transform.forward * (speed * Time.deltaTime), Space.World);
     }
 
-    protected bool DetectChEnemies()
+    private void DetectAndAvoidObstacles()
     {
-        Ray ray = new Ray(transform.position, transform.forward);
-        
-        if (Physics.SphereCast(ray, enemyDetectionRadius,
-                out RaycastHit hitInfo,  range, LayerMask.GetMask("BodyPart"), QueryTriggerInteraction.Collide))
+        float currentAngle = 0f;
+        int attempts = 0;
+
+        while (true) 
         {
-            if(hitInfo.collider != null)
+            if (!CheckForObstacle(currentAngle))
             {
-                Debug.Log("AAAA");
-                DebugReflectVector(hitInfo.collider);
-                return true;
+                RotateHead(Quaternion.Euler(0, currentAngle, 0) * transform.forward);
+                break;
+            }
+
+            attempts++;
+            if (attempts % 2 == 1)
+            {
+                // Odd attempts: check left side
+                currentAngle += avoidanceAngle * attempts;
+            }
+            else
+            {
+                // Even attempts: check right side
+                currentAngle = -avoidanceAngle * attempts;
             }
         }
-        return false;
     }
 
-    private void DebugReflectVector(Collider hitInfo)
+    private bool CheckForObstacle(float angle)
     {
-        Vector3 inNormal = hitInfo.transform.right;
-        Vector3 direction = hitInfo.transform.position - transform.position;
-        Debug.DrawRay(transform.position , direction , Color.blue);
-        Vector3 outDirection = Vector3.Reflect(direction, inNormal);
-        Debug.DrawRay(transform.position, outDirection, Color.yellow);
+        Vector3 direction = Quaternion.Euler(0, angle, 0) * transform.forward;
+        Ray ray = new Ray(transform.position, direction);
+
+        return Physics.SphereCast(ray, enemyDetectionRadius, range, LayerMask.GetMask("BodyPart"), QueryTriggerInteraction.Collide);
     }
 
+    private void RotateHead(Vector3 targetDirection)
+    {
+        float singleStep = rotationSpeed * Time.deltaTime;
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+        transform.rotation = Quaternion.Euler(0, Quaternion.LookRotation(newDirection).eulerAngles.y, 0);
+    }
 }

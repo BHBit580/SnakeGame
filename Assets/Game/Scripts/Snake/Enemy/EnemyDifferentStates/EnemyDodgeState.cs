@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class EnemyDodgeState : EnemyBaseState
 {
-    
-    private Collider target;
     public EnemyDodgeState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
     }
@@ -12,14 +10,11 @@ public class EnemyDodgeState : EnemyBaseState
     public override void Enter()
     {
         stateMachine.textUI.text = "Dodge";
-        DodgeEnemy();
     }
 
     public override void Tick(float deltaTime)
     {
-        if(DetectChEnemies(out Collider col) == false) stateMachine.SwitchState(new EnemyRandomPosition(stateMachine));
-        
-        DodgeEnemy();
+        DetectAndAvoidObstacles();
     }
 
     public override void Exit()
@@ -27,34 +22,40 @@ public class EnemyDodgeState : EnemyBaseState
         
     }
     
-    private void DodgeEnemy()
+    private void DetectAndAvoidObstacles()
     {
-        if (DetectChEnemies(out Collider enemyCollider))
+        float currentAngle = 0f;
+        int attempts = 0;
+
+        while (true) 
         {
-            Vector3 avoidDirection = Vector3.zero;
-            avoidDirection = Vector3.Reflect((enemyCollider.transform.position - stateMachine.transform.position),
-                enemyCollider.transform.right);
-            
-            
-            stateMachine.RotateHead(avoidDirection);
+            if (!CheckForObstacle(currentAngle))
+            {
+                stateMachine.RotateHead(Quaternion.Euler(0, currentAngle, 0) * stateMachine.headTransform.transform.forward);
+                break;
+            }
+
+            attempts++;
+            if (attempts % 2 == 1)
+            {
+                // Odd attempts: check left side
+                currentAngle += stateMachine.avoidanceAngle * attempts;
+            }
+            else
+            {
+                // Even attempts: check right side
+                currentAngle = -stateMachine.avoidanceAngle * attempts;
+            }
         }
     }
     
     
-    
-    
+    private bool CheckForObstacle(float angle)
+    {
+        Vector3 direction = Quaternion.Euler(0, angle, 0) * stateMachine.headTransform.transform.forward;
+        Ray ray = new Ray(stateMachine.headTransform.transform.position, direction);
+
+        return Physics.SphereCast(ray, stateMachine.enemyDetectionRadius, stateMachine.range, LayerMask.GetMask("BodyPart"  , "Wall"), QueryTriggerInteraction.Collide); 
+    }
 }
 
-/*if(stateMachine.enemiesInRangeList.Count ==0) return;
-        
-//target = stateMachine.enemiesInRangeList.FirstOrDefault(collider => collider.gameObject.name == "SnakeHead") ?? stateMachine.enemiesInRangeList[0];
-//Vector3 direction = (stateMachine.headTransform.position - target.transform.position);
-
-Vector3 averageDirection = Vector3.zero;
-        
-foreach (var enemy in stateMachine.enemiesInRangeList)
-{
-    averageDirection += (stateMachine.headTransform.position - enemy.transform.position);
-}
-        
-averageDirection /= stateMachine.enemiesInRangeList.Count;*/

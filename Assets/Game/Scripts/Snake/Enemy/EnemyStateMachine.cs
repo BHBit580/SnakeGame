@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -21,12 +20,12 @@ public class EnemyStateMachine : StateMachine, ISnake
     public float foodDetectionRadius = 4.5f;
     public float enemyDetectionRadius = 1.5f;
     public float randomPositionTimer = 1f;
+    public float avoidanceAngle = 15f;
     
     public float range;
     
     
     public int UniqueID { get;private set;}
-    public bool IsRotating { get; set; }
     
     [HideInInspector] public Transform headTransform;
     
@@ -34,7 +33,7 @@ public class EnemyStateMachine : StateMachine, ISnake
     private float dis;
     private Transform curBodyPart;
     private Transform PrevBodyPart;
-    private Tween currentRotateTween;
+
     public CoolDownSystem coolDownSystem { get; private set; }
     public TextMeshProUGUI textUI;
     public Collider[] foodInRangeCollider = new Collider[10];
@@ -67,23 +66,11 @@ public class EnemyStateMachine : StateMachine, ISnake
     }
     
     
-    public void RotateHead(Vector3 directionVector)
+    public void RotateHead(Vector3 targetDirection)
     {
-        if(IsRotating) return;
-        
-        if (currentRotateTween != null && currentRotateTween.IsActive())
-        {
-            currentRotateTween.Kill();
-        }
-        Debug.DrawRay(headTransform.position , directionVector , Color.yellow);
-        float angle = Vector3.Angle(headTransform.forward, directionVector);                     
-        
-        if (Vector3.Cross( directionVector , headTransform.forward).y > 0) angle = -angle;                  
-        
-        Vector3 rotationAngle = new Vector3(0, headTransform.rotation.eulerAngles.y + angle, 0);
-        
-        currentRotateTween = headTransform.DORotate(rotationAngle , 1/rotationSpeed);
-        currentRotateTween.onComplete += () => IsRotating = false;
+        float singleStep = rotationSpeed * Time.deltaTime;
+        Vector3 newDirection = Vector3.RotateTowards(headTransform.forward, targetDirection, singleStep, 0.0f);
+        headTransform.rotation = Quaternion.Euler(0, Quaternion.LookRotation(newDirection).eulerAngles.y, 0);
     }
     
     
@@ -130,11 +117,6 @@ public class EnemyStateMachine : StateMachine, ISnake
         
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(origin, foodDetectionRadius);
-    }
-    
-    private void OnDestroy()
-    {
-        currentRotateTween.Kill();
     }
 }
 

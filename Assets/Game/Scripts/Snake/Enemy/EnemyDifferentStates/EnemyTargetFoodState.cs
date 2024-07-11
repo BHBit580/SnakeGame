@@ -19,9 +19,9 @@ public class EnemyTargetFoodState : EnemyBaseState
 
     public override void Tick(float deltaTime)
     {
-        if(DetectChEnemies(out Collider enemyCollider)) stateMachine.SwitchState(new EnemyDodgeState(stateMachine));
+       // if(DetectChEnemies(out Collider enemyCollider)) stateMachine.SwitchState(new EnemyDodgeState(stateMachine));
         
-        SwitchToRandomMovingState();
+        //SwitchToRandomMovingState();
         TargetFood();
     }
 
@@ -50,7 +50,7 @@ public class EnemyTargetFoodState : EnemyBaseState
 
         if (targetCollider != null)
         {
-            Vector3 direction = stateMachine.headTransform.position - targetCollider.transform.position;
+            Vector3 direction = targetCollider.transform.position -stateMachine.headTransform.position;
             stateMachine.RotateHead(direction);
         }
     }
