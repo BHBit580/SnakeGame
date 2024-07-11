@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class EnemyDodgeState : EnemyBaseState
 {
+    private int maximumAttempts = 50;
     public EnemyDodgeState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
     }
@@ -27,9 +28,9 @@ public class EnemyDodgeState : EnemyBaseState
         float currentAngle = 0f;
         int attempts = 0;
 
-        while (true) 
+        for(int i = 0; i < maximumAttempts; i++)
         {
-            if (!CheckForObstacle(currentAngle))
+            if (!RaycastAndCheckForObstacleFuture(currentAngle))
             {
                 stateMachine.RotateHead(Quaternion.Euler(0, currentAngle, 0) * stateMachine.headTransform.transform.forward);
                 break;
@@ -38,19 +39,17 @@ public class EnemyDodgeState : EnemyBaseState
             attempts++;
             if (attempts % 2 == 1)
             {
-                // Odd attempts: check left side
                 currentAngle += stateMachine.avoidanceAngle * attempts;
             }
             else
             {
-                // Even attempts: check right side
                 currentAngle = -stateMachine.avoidanceAngle * attempts;
             }
         }
     }
     
     
-    private bool CheckForObstacle(float angle)
+    private bool RaycastAndCheckForObstacleFuture(float angle)
     {
         Vector3 direction = Quaternion.Euler(0, angle, 0) * stateMachine.headTransform.transform.forward;
         Ray ray = new Ray(stateMachine.headTransform.transform.position, direction);

@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 782337093387393691}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 15.73, y: 1.5, z: -17.46}
+  m_LocalPosition: {x: 15.73, y: 1, z: -17.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -456,9 +456,10 @@ MonoBehaviour:
   speed: 3
   rotationSpeed: 1
   foodDetectionRadius: 5
-  enemyDetectionRadius: 1.8
+  enemyDetectionRadius: 2.5
   randomPositionTimer: 5
-  range: 5
+  avoidanceAngle: 150
+  range: 6
   headTransform: {fileID: 0}
   textUI: {fileID: 7197037265491872816}
   foodInRangeCollider:
@@ -472,7 +473,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  enemiesInRangeList: []
 --- !u!1001 &143725343188670452
 PrefabInstance:
   m_ObjectHideFlags: 0

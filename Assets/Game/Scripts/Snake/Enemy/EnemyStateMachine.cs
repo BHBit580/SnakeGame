@@ -37,8 +37,6 @@ public class EnemyStateMachine : StateMachine, ISnake
     public CoolDownSystem coolDownSystem { get; private set; }
     public TextMeshProUGUI textUI;
     public Collider[] foodInRangeCollider = new Collider[10];
-    public List<Collider> enemiesInRangeList = new List<Collider>();
-
 
 
     private void Start()

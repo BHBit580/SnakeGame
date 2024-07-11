@@ -17,7 +17,7 @@ public class EnemyRandomPosition : EnemyBaseState , IHasCoolDown
 
     public override void Tick(float deltaTime)
     {
-        if(DetectChEnemies(out Collider enemyCollider)) stateMachine.SwitchState(new EnemyDodgeState(stateMachine));
+        if(DetectEnemies()) stateMachine.SwitchState(new EnemyDodgeState(stateMachine));
         
         SwitchToTargetFoodState();
         TargetRandomPositions();
