@@ -49,6 +49,10 @@ public class InputReader : MonoBehaviour , PlayerInputs.INewactionmapActions
         Ray ray = mainCamera.ScreenPointToRay(rawMousePosition);
         if(Physics.Raycast(ray, out RaycastHit hit))
         {
+            if (hit.collider.CompareTag("Player"))
+            {
+                Debug.Log("Player detected");
+            }
             MouseWorldPosition = hit.point;
         }
     }

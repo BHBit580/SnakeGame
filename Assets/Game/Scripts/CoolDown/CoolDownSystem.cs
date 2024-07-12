@@ -59,7 +59,7 @@ public class CoolDownData
     public CoolDownData(IHasCoolDown coolDown)
     {
         Id = coolDown.ID;
-        RemainingTime = coolDown.CoolDownDuration;
+        RemainingTime = coolDown.ScoreDecreaseCoolDownDuration;
     }
     
     public int Id { get; }

@@ -58,5 +58,5 @@ public class EnemyRandomPosition : EnemyBaseState , IHasCoolDown
     }
 
     public int ID => stateMachine.UniqueID;
-    public float CoolDownDuration => stateMachine.randomPositionTimer;
+    public float ScoreDecreaseCoolDownDuration => stateMachine.randomPositionTimer;
 }

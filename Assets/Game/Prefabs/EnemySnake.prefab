@@ -460,6 +460,7 @@ MonoBehaviour:
   randomPositionTimer: 5
   avoidanceAngle: 150
   range: 6
+  <UniqueID>k__BackingField: 0
   headTransform: {fileID: 0}
   textUI: {fileID: 7197037265491872816}
   foodInRangeCollider:

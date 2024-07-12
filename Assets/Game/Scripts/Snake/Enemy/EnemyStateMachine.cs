@@ -25,7 +25,7 @@ public class EnemyStateMachine : StateMachine, ISnake
     public float range;
     
     
-    public int UniqueID { get;private set;}
+    [field: SerializeField] public int UniqueID { get;private set;}
     
     [HideInInspector] public Transform headTransform;
     
@@ -37,12 +37,14 @@ public class EnemyStateMachine : StateMachine, ISnake
     public CoolDownSystem coolDownSystem { get; private set; }
     public TextMeshProUGUI textUI;
     public Collider[] foodInRangeCollider = new Collider[10];
+    
+    private static int lastAssignedID = 0;
 
 
     private void Start()
     {
         coolDownSystem = Utils.Instance.CoolDownSystem;
-        UniqueID = Random.Range(0, 100000);
+        UniqueID = lastAssignedID++;
         
         headTransform = bodyPartsList[0].transform;
 

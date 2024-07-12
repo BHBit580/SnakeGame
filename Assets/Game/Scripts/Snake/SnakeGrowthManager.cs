@@ -32,4 +32,13 @@ public class SnakeGrowthManager : MonoBehaviour
             bodyPart.localScale = transform.localScale;
         }
     }
+
+    public void DecreaseBodyPart(List<Transform> bodyPartsList)
+    {
+       int lastIndex = bodyPartsList.Count - 1;
+       if(lastIndex <=4) return;
+       GameObject lastBead = bodyPartsList[lastIndex].gameObject;
+       bodyPartsList.RemoveAt(lastIndex);
+       Destroy(lastBead);
+    }
 }

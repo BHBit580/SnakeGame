@@ -1,5 +1,5 @@
 public interface IHasCoolDown
 {
     int ID { get; }
-    float CoolDownDuration { get; }
+    float ScoreDecreaseCoolDownDuration { get; }
 }
