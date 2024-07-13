@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class FoodSpawner : GenericSingleton<FoodSpawner>
 {
     [SerializeField] private int noToSpawn;
-    [SerializeField] private GameObject foodPrefab;
+    [SerializeField] private GameObject[] foodPrefabs;
     
-    public List<GameObject> foodList = new List<GameObject>();
+    private List<GameObject> foodList = new List<GameObject>();
 
 
     private void Start()
@@ -17,7 +18,7 @@ public class FoodSpawner : GenericSingleton<FoodSpawner>
     private Vector3 GenerateRandomPosition()
     {
         Vector2 position = Utils.Instance.GetRandomSpawnPositionInsideSpawnArea();
-        return new Vector3(position.x, 1.5f, position.y);
+        return new Vector3(position.x, 1f, position.y);
     }
 
     private void Update()
@@ -41,10 +42,9 @@ public class FoodSpawner : GenericSingleton<FoodSpawner>
     {
         for (int i = 0; i < number; i++)
         {
-            Quaternion randomAngle = Quaternion.Euler(Random.Range(0, 360), 
-                Random.Range(0, 360), Random.Range(0, 360));
-            GameObject food = Instantiate(foodPrefab, GenerateRandomPosition(), randomAngle);
+            GameObject food = Instantiate(foodPrefabs[Random.Range(0 , foodPrefabs.Length-1)], GenerateRandomPosition(), Quaternion.identity);
             food.layer = LayerMask.NameToLayer("Food");
+            food.tag = "Food";
             food.transform.SetParent(transform);
             foodList.Add(food);
         }
@@ -54,8 +54,9 @@ public class FoodSpawner : GenericSingleton<FoodSpawner>
     {
         foreach (Transform bead in beadsTransform)
         {
-            GameObject food = Instantiate(foodPrefab, bead.position, bead.rotation);
+            GameObject food = Instantiate(foodPrefabs[Random.Range(0 , foodPrefabs.Length-1)], bead.position, bead.rotation);
             food.layer = LayerMask.NameToLayer("Food");
+            food.tag = "Food";
             food.transform.SetParent(transform);
             foodList.Add(food);
         }

@@ -43,7 +43,7 @@ Material:
     - _QueueOffset: 0
     - _Size: 40
     m_Colors:
-    - _GridColor: {r: 0.5997957, g: 0.8769207, b: 1.5974462, a: 0}
+    - _GridColor: {r: 2.132716, g: 2.132716, b: 2.132716, a: 0}
     - _Tiling: {r: 10, g: 10, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &4766082859140452173
