@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -26,7 +27,10 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < number; i++)
         {
-            GameObject enemy = Instantiate(enemyPrefab, GenerateRandomPosition(), Quaternion.identity);
+            GameObject enemy = Instantiate(enemyPrefab);
+            enemy.transform.GetChild(0).transform.position = GenerateRandomPosition();
+            Quaternion randomAngle = Quaternion.Euler(Quaternion.identity.eulerAngles.x , Random.Range(0 , 360) , Quaternion.identity.eulerAngles.z);
+            enemy.transform.GetChild(0).transform.rotation = randomAngle;
             enemy.transform.SetParent(transform);
             currentEnemies.Add(enemy);
         }
@@ -35,7 +39,7 @@ public class EnemySpawner : MonoBehaviour
     private Vector3 GenerateRandomPosition()
     {
         Vector2 position = Utils.Instance.GetRandomSpawnPositionInsideSpawnArea();
-        return new Vector3(position.x, 0f, position.y);
+        return new Vector3(position.x, 1f, position.y);
     }
     
     private void CheckEnemiesDestroyedInList()

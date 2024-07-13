@@ -309,7 +309,7 @@ MonoBehaviour:
   playerInScene: {fileID: 1320972049}
   enemyPrefab: {fileID: 7747327982473953100, guid: 0b037680f2e75dd44acc25c2c3ad31df,
     type: 3}
-  noToSpawn: 25
+  noToSpawn: 15
   currentEnemies: []
 --- !u!4 &185715878
 Transform:
@@ -2752,7 +2752,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 108.404236, y: -56.368935, z: -1.571495}
   m_LocalScale: {x: 140, y: 2, z: 140}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1885478468}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

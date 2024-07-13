@@ -17,9 +17,7 @@ public class EnemyRandomPosition : EnemyBaseState , IHasCoolDown
 
     public override void Tick(float deltaTime)
     {
-        if(DetectEnemies()) stateMachine.SwitchState(new EnemyDodgeState(stateMachine));
-        
-        SwitchToTargetFoodState();
+        SwitchToOtherStates();
         TargetRandomPositions();
     }
 
@@ -30,7 +28,11 @@ public class EnemyRandomPosition : EnemyBaseState , IHasCoolDown
     
     
     
-    
+    private void SwitchToOtherStates()
+    {
+        SwitchToTargetFoodState();
+        if(DetectEnemies()) stateMachine.SwitchState(new EnemyDodgeState(stateMachine));
+    }
     
     private void SwitchToTargetFoodState()
     {
@@ -42,6 +44,8 @@ public class EnemyRandomPosition : EnemyBaseState , IHasCoolDown
             stateMachine.SwitchState(new EnemyTargetFoodState(stateMachine));
         }
     }
+
+    
     
     private void TargetRandomPositions()
     {

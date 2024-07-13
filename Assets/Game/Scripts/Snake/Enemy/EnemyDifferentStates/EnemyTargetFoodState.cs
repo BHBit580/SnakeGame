@@ -19,6 +19,7 @@ public class EnemyTargetFoodState : EnemyBaseState
 
     public override void Tick(float deltaTime)
     {
+        SwitchToOtherStates();
         TargetFood();
     }
 
@@ -51,6 +52,12 @@ public class EnemyTargetFoodState : EnemyBaseState
         }
     }
 
+
+    private void SwitchToOtherStates()
+    {
+        if(DetectEnemies()) stateMachine.SwitchState(new EnemyDodgeState(stateMachine));
+        SwitchToRandomMovingState();
+    }
 
     
     private void SwitchToRandomMovingState()

@@ -15,6 +15,7 @@ public class EnemyDodgeState : EnemyBaseState
 
     public override void Tick(float deltaTime)
     {
+        if(!DetectEnemies()) stateMachine.SwitchState(new EnemyRandomPosition(stateMachine));
         DetectAndAvoidObstacles();
     }
 

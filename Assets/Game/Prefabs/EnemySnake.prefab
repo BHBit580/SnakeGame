@@ -456,10 +456,10 @@ MonoBehaviour:
   speed: 3
   rotationSpeed: 1
   foodDetectionRadius: 5
-  enemyDetectionRadius: 2.5
+  enemyDetectionRadius: 5
   randomPositionTimer: 5
   avoidanceAngle: 150
-  range: 6
+  range: 6.5
   <UniqueID>k__BackingField: 0
   headTransform: {fileID: 0}
   textUI: {fileID: 7197037265491872816}
