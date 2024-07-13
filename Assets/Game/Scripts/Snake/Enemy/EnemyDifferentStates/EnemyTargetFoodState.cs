@@ -19,8 +19,6 @@ public class EnemyTargetFoodState : EnemyBaseState
 
     public override void Tick(float deltaTime)
     {
-        if(DetectEnemies()) stateMachine.SwitchState(new EnemyDodgeState(stateMachine));
-        SwitchToRandomMovingState();
         TargetFood();
     }
 
@@ -44,7 +42,6 @@ public class EnemyTargetFoodState : EnemyBaseState
                 targetCollider = stateMachine.foodInRangeCollider[0];
             }
         }
-
         
 
         if (targetCollider != null)

@@ -57,4 +57,4 @@ public class EnemyDodgeState : EnemyBaseState
         return Physics.SphereCast(ray, stateMachine.enemyDetectionRadius, stateMachine.range, LayerMask.GetMask("BodyPart"  , "Wall"), QueryTriggerInteraction.Collide); 
     }
 }
-
+ 
