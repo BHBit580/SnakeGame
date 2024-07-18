@@ -1,5 +1,8 @@
+using System;
+using System.Collections.Generic;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
+using Unity.MLAgents.Policies;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
 
@@ -7,6 +10,7 @@ using UnityEngine;
 public class EnemyAgent : Agent
 {
     [SerializeField] private float speed = 5f;
+    [SerializeField] private CustomRaycast3D customRaycast3D;
     [SerializeField] private Transform headTransform;
     [SerializeField] private Utils utils;
 
@@ -21,6 +25,7 @@ public class EnemyAgent : Agent
     public override void CollectObservations(VectorSensor sensor)
     {
         sensor.AddObservation(headTransform.localPosition);
+        sensor.AddObservation(customRaycast3D.CastRays());
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -37,6 +42,4 @@ public class EnemyAgent : Agent
         var actions = actionsOut.ContinuousActions;
         actions[0] = (int)Input.GetAxis("Horizontal");
     }
-
-
 }
