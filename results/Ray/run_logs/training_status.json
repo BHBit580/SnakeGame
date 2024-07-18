@@ -1,0 +1,56 @@
+{
+    "Default": {
+        "checkpoints": [
+            {
+                "steps": 20240,
+                "file_path": "results\\Ray\\Default\\Default-20240.onnx",
+                "reward": 0.0,
+                "creation_time": 1721131792.3592324,
+                "auxillary_file_paths": [
+                    "results\\Ray\\Default\\Default-20240.pt"
+                ]
+            },
+            {
+                "steps": 23376,
+                "file_path": "results\\Ray\\Default\\Default-23376.onnx",
+                "reward": 0.0,
+                "creation_time": 1721132102.867154,
+                "auxillary_file_paths": [
+                    "results\\Ray\\Default\\Default-23376.pt"
+                ]
+            },
+            {
+                "steps": 33967,
+                "file_path": "results\\Ray\\Default\\Default-33967.onnx",
+                "reward": null,
+                "creation_time": 1721132202.3918025,
+                "auxillary_file_paths": [
+                    "results\\Ray\\Default\\Default-33967.pt"
+                ]
+            },
+            {
+                "steps": 44538,
+                "file_path": "results\\Ray\\Default\\Default-44538.onnx",
+                "reward": null,
+                "creation_time": 1721132504.05905,
+                "auxillary_file_paths": [
+                    "results\\Ray\\Default\\Default-44538.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 44538,
+            "file_path": "results\\Ray\\Default.onnx",
+            "reward": null,
+            "creation_time": 1721132504.05905,
+            "auxillary_file_paths": [
+                "results\\Ray\\Default\\Default-44538.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.0.0",
+        "torch_version": "2.2.2+cu121"
+    }
+}

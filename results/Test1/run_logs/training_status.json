@@ -1,0 +1,29 @@
+{
+    "BallRB": {
+        "checkpoints": [
+            {
+                "steps": 10204,
+                "file_path": "results\\Test1\\BallRB\\BallRB-10204.onnx",
+                "reward": -6.8875,
+                "creation_time": 1721112587.4907005,
+                "auxillary_file_paths": [
+                    "results\\Test1\\BallRB\\BallRB-10204.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 10204,
+            "file_path": "results\\Test1\\BallRB.onnx",
+            "reward": -6.8875,
+            "creation_time": 1721112587.4907005,
+            "auxillary_file_paths": [
+                "results\\Test1\\BallRB\\BallRB-10204.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.0.0",
+        "torch_version": "2.2.2+cu121"
+    }
+}

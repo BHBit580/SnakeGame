@@ -2,11 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class FoodSpawner : GenericSingleton<FoodSpawner>
+public class FoodSpawner : MonoBehaviour
 {
     [SerializeField] private int noToSpawn;
+    [SerializeField] private Utils utils;
     [SerializeField] private GameObject[] foodPrefabs;
-    
+
     private List<GameObject> foodList = new List<GameObject>();
 
 
@@ -14,10 +15,10 @@ public class FoodSpawner : GenericSingleton<FoodSpawner>
     {
         SpawnFood(noToSpawn);
     }
-    
+
     private Vector3 GenerateRandomPosition()
     {
-        Vector2 position = Utils.Instance.GetRandomSpawnPositionInsideSpawnArea();
+        Vector2 position = utils.GetRandomSpawnPositionInsideSpawnArea();
         return new Vector3(position.x, 1f, position.y);
     }
 
@@ -38,14 +39,18 @@ public class FoodSpawner : GenericSingleton<FoodSpawner>
         }
     }
 
-    private void SpawnFood(int number)
+    public void SpawnFood(int number)
     {
         for (int i = 0; i < number; i++)
         {
-            GameObject food = Instantiate(foodPrefabs[Random.Range(0 , foodPrefabs.Length-1)], GenerateRandomPosition(), Quaternion.identity);
+            GameObject food = Instantiate(foodPrefabs[Random.Range(0 , foodPrefabs.Length-1)]);
+            Vector3 position = GenerateRandomPosition();
+            food.transform.SetParent(transform);
+            food.transform.localPosition = position;
+            food.transform.rotation = Quaternion.identity;
             food.layer = LayerMask.NameToLayer("Food");
             food.tag = "Food";
-            food.transform.SetParent(transform);
+
             foodList.Add(food);
         }
     }
@@ -60,5 +65,16 @@ public class FoodSpawner : GenericSingleton<FoodSpawner>
             food.transform.SetParent(transform);
             foodList.Add(food);
         }
+    }
+
+
+    public void DestroyEverythingAndRespawn()
+    {
+        foreach (GameObject food in foodList)
+        {
+            Destroy(food);
+        }
+        foodList.Clear();
+        SpawnFood(noToSpawn + Random.Range(0 , 10));
     }
 }

@@ -9,10 +9,10 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject playerInScene;
     [SerializeField] private GameObject enemyPrefab;
 
-    
+    [SerializeField] private Utils utils;
     [SerializeField] private int noToSpawn;
     [SerializeField] private List<GameObject> currentEnemies;
-    
+
     private void Start()
     {
         SpawnEnemies(noToSpawn);
@@ -35,13 +35,13 @@ public class EnemySpawner : MonoBehaviour
             currentEnemies.Add(enemy);
         }
     }
-    
+
     private Vector3 GenerateRandomPosition()
     {
-        Vector2 position = Utils.Instance.GetRandomSpawnPositionInsideSpawnArea();
+        Vector2 position = utils.GetRandomSpawnPositionInsideSpawnArea();
         return new Vector3(position.x, 1f, position.y);
     }
-    
+
     private void CheckEnemiesDestroyedInList()
     {
         for (int i = 0; i < currentEnemies.Count; i++)

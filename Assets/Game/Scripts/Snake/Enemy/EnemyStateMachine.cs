@@ -4,31 +4,31 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
 
-public class EnemyStateMachine : StateMachine, ISnake 
+public class EnemyStateMachine : StateMachine, ISnake
 {
     [Header("References")]
-    
+
     [SerializeField] private List<Transform> bodyPartsList = new List<Transform>();
-    
+
     [Header("Values")]
     [SerializeField] private float minDistance = 0.25f;
     [SerializeField] private float speed = 1;
     [SerializeField] private float rotationSpeed = 50;
-    
-    
+
+
     [Header("AI")]
     public float foodDetectionRadius = 4.5f;
     public float enemyDetectionRadius = 1.5f;
     public float randomPositionTimer = 1f;
     public float avoidanceAngle = 15f;
-    
+
     public float range;
-    
-    
+
+
     [field: SerializeField] public int UniqueID { get;private set;}
-    
+
     [HideInInspector] public Transform headTransform;
-    
+
     private Vector3 targetPosition;
     private float dis;
     private Transform curBodyPart;
@@ -37,15 +37,14 @@ public class EnemyStateMachine : StateMachine, ISnake
     public CoolDownSystem coolDownSystem { get; private set; }
     public TextMeshProUGUI textUI;
     public Collider[] foodInRangeCollider = new Collider[10];
-    
+
     private static int lastAssignedID = 0;
 
 
     private void Start()
     {
-        coolDownSystem = Utils.Instance.CoolDownSystem;
         UniqueID = lastAssignedID++;
-        
+
         headTransform = bodyPartsList[0].transform;
 
         SnakeGrowthManager snakeGrowthManager = GetComponentInChildren<SnakeGrowthManager>();
@@ -54,7 +53,7 @@ public class EnemyStateMachine : StateMachine, ISnake
         {
             snakeGrowthManager.AddBodyPart(this);
         }
-        
+
         SwitchState(new EnemyDodgeState(this));
     }
 
@@ -62,18 +61,18 @@ public class EnemyStateMachine : StateMachine, ISnake
     {
         base.Update();
         headTransform.Translate(headTransform.forward * (speed * Time.deltaTime) , Space.World);
-        MoveBodyParts(); 
+        MoveBodyParts();
     }
-    
-    
+
+
     public void RotateHead(Vector3 targetDirection)
     {
         float singleStep = rotationSpeed * Time.deltaTime;
         Vector3 newDirection = Vector3.RotateTowards(headTransform.forward, targetDirection, singleStep, 0.0f);
         headTransform.rotation = Quaternion.Euler(0, Quaternion.LookRotation(newDirection).eulerAngles.y, 0);
     }
-    
-    
+
+
     private void MoveBodyParts()
     {
         for (int i = 1; i < bodyPartsList.Count; i++)
@@ -95,7 +94,7 @@ public class EnemyStateMachine : StateMachine, ISnake
             curBodyPart.rotation = Quaternion.Slerp(curBodyPart.rotation, PrevBodyPart.rotation, T);
         }
     }
-    
+
     public void AddBodyPart(Transform newPart)
     {
         bodyPartsList.Add(newPart);
@@ -105,16 +104,16 @@ public class EnemyStateMachine : StateMachine, ISnake
     {
         return bodyPartsList;
     }
-    
+
     private void OnDrawGizmos()
     {
         Vector3 origin = bodyPartsList[0].transform.position;
         Vector3 direction = bodyPartsList[0].transform.forward;
-        
+
         Gizmos.color = Color.red;
         Gizmos.DrawLine(origin, origin + direction * range);
         Gizmos.DrawWireSphere(origin + direction * range, enemyDetectionRadius);
-        
+
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(origin, foodDetectionRadius);
     }

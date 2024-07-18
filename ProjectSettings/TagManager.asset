@@ -8,6 +8,7 @@ TagManager:
   - BodyPart
   - Ground
   - Wall
+  - Goal
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - BodyPart
   - SnakeHead
   - Wall
-  - 
+  - Goal
   - 
   - 
   - 
