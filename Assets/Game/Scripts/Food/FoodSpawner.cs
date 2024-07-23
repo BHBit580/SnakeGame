@@ -34,7 +34,11 @@ public class FoodSpawner : MonoBehaviour
             if (foodList[i] == null)
             {
                 foodList.RemoveAt(i);
-                SpawnFood(1);
+                int random = Random.Range(1, 10);
+                if (random == 1)
+                {
+                    SpawnFood(10);
+                }
             }
         }
     }
@@ -75,6 +79,6 @@ public class FoodSpawner : MonoBehaviour
             Destroy(food);
         }
         foodList.Clear();
-        SpawnFood(noToSpawn + Random.Range(0 , 10));
+        SpawnFood(noToSpawn);
     }
 }

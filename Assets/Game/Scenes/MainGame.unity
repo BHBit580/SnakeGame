@@ -309,7 +309,8 @@ MonoBehaviour:
   playerInScene: {fileID: 1320972049}
   enemyPrefab: {fileID: 7747327982473953100, guid: 0b037680f2e75dd44acc25c2c3ad31df,
     type: 3}
-  noToSpawn: 15
+  utils: {fileID: 0}
+  noToSpawn: 0
   currentEnemies: []
 --- !u!4 &185715878
 Transform:
@@ -391,6 +392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noToSpawn: 500
+  utils: {fileID: 0}
   foodPrefabs:
   - {fileID: 1602917078173315536, guid: c14abfb2914172648803ead794840e08, type: 3}
   - {fileID: 9101019516112107179, guid: 1d0e7211c8684894aaa950d718845bc1, type: 3}
@@ -3503,6 +3505,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemySnake
+      objectReference: {fileID: 0}
+    - target: {fileID: 7747327982473953100, guid: 0b037680f2e75dd44acc25c2c3ad31df,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

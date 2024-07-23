@@ -2,36 +2,63 @@
     "metadata": {
         "stats_format_version": "0.3.0",
         "mlagents_version": "1.0.0",
-        "torch_version": "2.2.2+cu121"
+        "torch_version": "2.3.1+cpu"
     },
     "Default": {
         "checkpoints": [
             {
-                "steps": 0,
-                "file_path": "results\\Agent2\\Default\\Default-0.onnx",
-                "reward": null,
-                "creation_time": 1721309452.6593544,
+                "steps": 535528,
+                "file_path": "results\\Agent2\\Default\\Default-535528.onnx",
+                "reward": 3.0,
+                "creation_time": 1721365438.3649487,
                 "auxillary_file_paths": [
-                    "results\\Agent2\\Default\\Default-0.pt"
+                    "results\\Agent2\\Default\\Default-535528.pt"
                 ]
             },
             {
-                "steps": 226375,
-                "file_path": "results\\Agent2\\Default\\Default-226375.onnx",
-                "reward": 3.0,
-                "creation_time": 1721310234.2139893,
+                "steps": 732803,
+                "file_path": "results\\Agent2\\Default\\Default-732803.onnx",
+                "reward": null,
+                "creation_time": 1721365860.4673212,
                 "auxillary_file_paths": [
-                    "results\\Agent2\\Default\\Default-226375.pt"
+                    "results\\Agent2\\Default\\Default-732803.pt"
+                ]
+            },
+            {
+                "steps": 949094,
+                "file_path": "results\\Agent2\\Default\\Default-949094.onnx",
+                "reward": null,
+                "creation_time": 1721366264.3792534,
+                "auxillary_file_paths": [
+                    "results\\Agent2\\Default\\Default-949094.pt"
+                ]
+            },
+            {
+                "steps": 959923,
+                "file_path": "results\\Agent2\\Default\\Default-959923.onnx",
+                "reward": 12.0,
+                "creation_time": 1721388590.4885905,
+                "auxillary_file_paths": [
+                    "results\\Agent2\\Default\\Default-959923.pt"
+                ]
+            },
+            {
+                "steps": 970174,
+                "file_path": "results\\Agent2\\Default\\Default-970174.onnx",
+                "reward": -3.0,
+                "creation_time": 1721388802.4012787,
+                "auxillary_file_paths": [
+                    "results\\Agent2\\Default\\Default-970174.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 226375,
+            "steps": 970174,
             "file_path": "results\\Agent2\\Default.onnx",
-            "reward": 3.0,
-            "creation_time": 1721310234.2139893,
+            "reward": -3.0,
+            "creation_time": 1721388802.4012787,
             "auxillary_file_paths": [
-                "results\\Agent2\\Default\\Default-226375.pt"
+                "results\\Agent2\\Default\\Default-970174.pt"
             ]
         }
     }

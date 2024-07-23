@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -11,8 +10,9 @@ public class Utils : MonoBehaviour
     public Vector2 GetRandomSpawnPositionInsideSpawnArea()
     {
         Bounds bounds = spawnArea.bounds;
-        float positionX = Random.Range(25, -25);
-        float positionZ = Random.Range(30 , -25);
+        float positionX = Random.Range(-45, 35);
+        float positionZ = Random.Range(-45, 45);
+
 
         return new Vector2(positionX, positionZ);
     }

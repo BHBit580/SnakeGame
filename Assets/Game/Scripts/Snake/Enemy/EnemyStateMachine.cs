@@ -61,7 +61,7 @@ public class EnemyStateMachine : StateMachine, ISnake
     {
         base.Update();
         headTransform.Translate(headTransform.forward * (speed * Time.deltaTime) , Space.World);
-        MoveBodyParts();
+       // MoveBodyParts();
     }
 
 

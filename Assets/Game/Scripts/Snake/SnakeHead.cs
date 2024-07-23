@@ -1,12 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SnakeHead : MonoBehaviour
 {
     [SerializeField] private SnakeGrowthManager growthManager;
+    public FoodSpawner foodSpawner;
     private ISnake iMySnake;
+
+
 
     private void Awake()
     {
@@ -22,7 +22,7 @@ public class SnakeHead : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Food"))           //make only player camera shake
         {
-            Destroy(other.gameObject);
+           // Destroy(other.gameObject);
             growthManager.AddBodyPart(iMySnake);
         }
 
@@ -30,15 +30,14 @@ public class SnakeHead : MonoBehaviour
         {
             ISnake interfaceOfOther = other.GetComponentInParent<ISnake>();
             if(interfaceOfOther == iMySnake) return;                                   // return as it's our own body part
-
-            //FoodSpawner.Instance.SpawnFoodOnDeath(iMySnake.GetSnakeBeadsList());
-            Destroy(transform.parent.gameObject);
+            foodSpawner.SpawnFoodOnDeath(iMySnake.GetSnakeBeadsList());
+            //Destroy(transform.parent.gameObject);
         }
 
         if (other.gameObject.CompareTag("Wall"))
         {
-           // FoodSpawner.Instance.SpawnFoodOnDeath(iMySnake.GetSnakeBeadsList());
-            Destroy(transform.parent.gameObject);
+            foodSpawner.SpawnFoodOnDeath(iMySnake.GetSnakeBeadsList());
+           // Destroy(transform.parent.gameObject);
         }
     }
 }

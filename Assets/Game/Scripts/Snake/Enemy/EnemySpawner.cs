@@ -1,17 +1,18 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
-using Random = UnityEngine.Random;
+
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject playerInScene;
     [SerializeField] private GameObject enemyPrefab;
 
     [SerializeField] private Utils utils;
+    [SerializeField] private FoodSpawner foodSpawner;
     [SerializeField] private int noToSpawn;
     [SerializeField] private List<GameObject> currentEnemies;
+    [SerializeField] MeshRenderer ground;
+
 
     private void Start()
     {
@@ -27,11 +28,18 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < number; i++)
         {
-            GameObject enemy = Instantiate(enemyPrefab);
-            enemy.transform.GetChild(0).transform.position = GenerateRandomPosition();
-            Quaternion randomAngle = Quaternion.Euler(Quaternion.identity.eulerAngles.x , Random.Range(0 , 360) , Quaternion.identity.eulerAngles.z);
-            enemy.transform.GetChild(0).transform.rotation = randomAngle;
+            GameObject enemy = Instantiate(enemyPrefab , Vector3.zero , Quaternion.identity);
+            Transform enemyHead = enemy.transform.GetChild(0);
+
+            enemyHead.GetComponent<EnemyHead>().foodSpawner = foodSpawner;
+            enemyHead.GetComponent<EnemyHead>().ground = ground;
+
             enemy.transform.SetParent(transform);
+            enemy.transform.localPosition = Vector3.zero;
+
+            enemyHead.transform.localPosition = GenerateRandomPosition();
+            enemyHead.transform.rotation = Quaternion.identity;
+
             currentEnemies.Add(enemy);
         }
     }
