@@ -31,8 +31,8 @@ public class EnemySpawner : MonoBehaviour
             GameObject enemy = Instantiate(enemyPrefab , Vector3.zero , Quaternion.identity);
             Transform enemyHead = enemy.transform.GetChild(0);
 
-            enemyHead.GetComponent<EnemyHead>().foodSpawner = foodSpawner;
-            enemyHead.GetComponent<EnemyHead>().ground = ground;
+            enemyHead.GetComponent<SnakeHead>().foodSpawner = foodSpawner;
+//            enemyHead.GetComponent<EnemyHead>().ground = ground;
 
             enemy.transform.SetParent(transform);
             enemy.transform.localPosition = Vector3.zero;

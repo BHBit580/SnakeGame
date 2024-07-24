@@ -3,6 +3,7 @@ using UnityEngine;
 
 
 //DESTRUCTION WILL HAPPEN HERE  WE WILL HERE ONLY AND ONLY ADD SETREWARD
+//This class will only and only be used in ml training ! (not final production)
 
 public class EnemyHead : SnakeHead
 {
@@ -17,10 +18,9 @@ public class EnemyHead : SnakeHead
 
         if (other.gameObject.CompareTag("Food"))
         {
-
+            Destroy(other.gameObject);
             ground.material = winMaterial;
             agent.SetReward(3);
-            Destroy(other.gameObject);
         }
 
         if (other.gameObject.CompareTag("Wall"))

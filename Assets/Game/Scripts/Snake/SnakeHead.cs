@@ -22,7 +22,7 @@ public class SnakeHead : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Food"))           //make only player camera shake
         {
-           // Destroy(other.gameObject);
+            Destroy(other.gameObject);
             growthManager.AddBodyPart(iMySnake);
         }
 
@@ -31,13 +31,13 @@ public class SnakeHead : MonoBehaviour
             ISnake interfaceOfOther = other.GetComponentInParent<ISnake>();
             if(interfaceOfOther == iMySnake) return;                                   // return as it's our own body part
             foodSpawner.SpawnFoodOnDeath(iMySnake.GetSnakeBeadsList());
-            //Destroy(transform.parent.gameObject);
+            Destroy(transform.parent.gameObject);
         }
 
         if (other.gameObject.CompareTag("Wall"))
         {
             foodSpawner.SpawnFoodOnDeath(iMySnake.GetSnakeBeadsList());
-           // Destroy(transform.parent.gameObject);
+            Destroy(transform.parent.gameObject);
         }
     }
 }

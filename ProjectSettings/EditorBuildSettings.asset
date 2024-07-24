@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Game/Scenes/MLAgent/Ml.unity
+    path: Assets/Game/Scripts/Snake/EnemyAI/MLAgent/Ml.unity
     guid: 4064709b66e30db4ca76d8cda2667efd
   m_configObjects: {}

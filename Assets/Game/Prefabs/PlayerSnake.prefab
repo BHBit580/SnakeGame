@@ -47,6 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputReader: {fileID: 3503445511953381759}
+  playerDecreaseScore: {fileID: 11400000, guid: e813fc143bb22ad4eafa60aee475c51e,
+    type: 2}
+  playerScore: {fileID: 11400000, guid: 804da1b0d8865c246baa83a60778c5c2, type: 2}
   coolDownSystem: {fileID: 0}
   bodyPartsList:
   - {fileID: 8063498359771263115}
@@ -54,6 +57,7 @@ MonoBehaviour:
   normalSpeed: 5
   fastSpeed: 8
   rotationSpeed: 100
+  scoreDecreaseCoolDownTime: 0.8
 --- !u!114 &3503445511953381759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,7 +87,7 @@ GameObject:
   - component: {fileID: 5783969365872485561}
   m_Layer: 8
   m_Name: SnakeHead
-  m_TagString: Player
+  m_TagString: BodyPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,7 +101,7 @@ Transform:
   m_GameObject: {fileID: 6436272838274292423}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.35, y: 1.5, z: -0.55}
+  m_LocalPosition: {x: 15.35, y: 1, z: -0.55}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -217,7 +221,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growthManager: {fileID: 5783969365872485561}
+  foodSpawner: {fileID: 0}
   playerDied: {fileID: 11400000, guid: dca24e1497941964b9b01ae0d90e259a, type: 2}
+  playerScoreEvent: {fileID: 11400000, guid: 4378e9449af4a7546b1c00b11f6bd82a, type: 2}
 --- !u!114 &5783969365872485561
 MonoBehaviour:
   m_ObjectHideFlags: 0
