@@ -19,7 +19,7 @@ public class SoundManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    
+
     public AudioSource GetMusicSource()
     {
         return musicSource;
@@ -46,7 +46,7 @@ public class SoundManager : MonoBehaviour
         effectSource.Play();
         effectSource.loop = true;
     }
-    
+
     public void FadeOutMusic(float fadeTime , AudioSource audioSource)
     {
         StartCoroutine(FadeOut(audioSource, fadeTime));
@@ -66,32 +66,32 @@ public class SoundManager : MonoBehaviour
         audioSource.Stop();
         audioSource.volume = startVolume;
     }
-    
-    public void FadeInMusic(AudioClip clip , float fadeTime , float volume, bool loopCondition , AudioSource audioSource)
+
+    public void FadeInMusic(AudioClip clip , float fadeTime , float volume, AudioSource audioSource)
     {
         musicSource.clip = clip;
-        musicSource.volume = volume; 
+        musicSource.volume = volume;
         StartCoroutine(FadeIn(audioSource, fadeTime));
         musicSource.loop = true;
     }
-    
+
     private IEnumerator FadeIn(AudioSource audioSource, float fadeTime)
     {
         float startVolume = 0.2f;
- 
+
         audioSource.volume = 0;
         audioSource.Play();
- 
+
         while (audioSource.volume < 1.0f)
         {
             audioSource.volume += startVolume * Time.deltaTime / fadeTime;
- 
+
             yield return null;
         }
- 
+
         audioSource.volume = 1f;
     }
-    
+
     public void StopMusic()
     {
         musicSource.Stop();
@@ -103,6 +103,6 @@ public class SoundManager : MonoBehaviour
         effectSource.Stop();
         effectSource.loop = false;
     }
-    
-    
+
+
 }

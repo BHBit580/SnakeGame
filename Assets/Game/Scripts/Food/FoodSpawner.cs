@@ -49,8 +49,9 @@ public class FoodSpawner : MonoBehaviour
         {
             GameObject food = Instantiate(foodPrefabs[Random.Range(0 , foodPrefabs.Length-1)]);
             Vector3 position = GenerateRandomPosition();
-            food.transform.SetParent(transform);
             food.transform.localPosition = position;
+            food.transform.SetParent(transform);
+
             food.transform.rotation = Quaternion.identity;
             food.layer = LayerMask.NameToLayer("Food");
             food.tag = "Food";

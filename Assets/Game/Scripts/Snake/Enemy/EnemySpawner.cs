@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 
 public class EnemySpawner : MonoBehaviour
@@ -29,16 +30,17 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 0; i < number; i++)
         {
             GameObject enemy = Instantiate(enemyPrefab , Vector3.zero , Quaternion.identity);
+            enemy.gameObject.name = GenerateRandomName();
             Transform enemyHead = enemy.transform.GetChild(0);
 
             enemyHead.GetComponent<SnakeHead>().foodSpawner = foodSpawner;
 //            enemyHead.GetComponent<EnemyHead>().ground = ground;
 
-            enemy.transform.SetParent(transform);
             enemy.transform.localPosition = Vector3.zero;
-
             enemyHead.transform.localPosition = GenerateRandomPosition();
             enemyHead.transform.rotation = Quaternion.identity;
+
+            enemy.transform.SetParent(transform);
 
             currentEnemies.Add(enemy);
         }
@@ -60,5 +62,18 @@ public class EnemySpawner : MonoBehaviour
                 SpawnEnemies(1);
             }
         }
+    }
+
+    private string GenerateRandomName()
+    {
+        string[] names =
+        {
+            "Zephy", "Quark", "Nebu", "Galax", "Cosmo", "China" , "Zara",
+            "Lumin", "Nova", "Pulsar", "Astra", "Orion", "Rani" , "Mica",
+            "Ronaldo", "Messi", "Neymar", "Mbappe", "Suarez", "Hazard" , "Kane",
+            "Zenith", "Aurora", "Eclipse", "Comet", "Nimbus" , "Hiya"
+        };
+
+        return names[Random.Range(0, names.Length)];
     }
 }

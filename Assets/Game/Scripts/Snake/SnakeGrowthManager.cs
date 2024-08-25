@@ -8,7 +8,7 @@ public class SnakeGrowthManager : MonoBehaviour
     public float minScale = 0.7f;
     public float maxScale = 1.5f;
     public float sizeAdditiveFactor = 0.5f;
-    
+
     public void AddBodyPart(ISnake iMySnake)
     {
         List<Transform> bodyParts = iMySnake.GetSnakeBeadsList();
@@ -18,6 +18,16 @@ public class SnakeGrowthManager : MonoBehaviour
         newPart.SetParent(transform.parent);
         iMySnake.AddBodyPart(newPart);
         IncreaseBodyPartOfEachBead(bodyParts);
+    }
+
+    public void DecreaseBodyPart(List<Transform> bodyPartsList)
+    {
+        int lastIndex = bodyPartsList.Count - 1;
+        if(lastIndex <=0) return;
+        DecreaseBodyPartOfEachBead(bodyPartsList);
+        GameObject lastBead = bodyPartsList[lastIndex].gameObject;
+        bodyPartsList.RemoveAt(lastIndex);
+        Destroy(lastBead);
     }
 
     private void IncreaseBodyPartOfEachBead(List<Transform> bodyParts)
@@ -32,7 +42,7 @@ public class SnakeGrowthManager : MonoBehaviour
             bodyPart.localScale = transform.localScale;
         }
     }
-    
+
     private void DecreaseBodyPartOfEachBead(List<Transform> bodyParts)
     {
         float newScale = transform.localScale.x - sizeAdditiveFactor/100;
@@ -44,15 +54,5 @@ public class SnakeGrowthManager : MonoBehaviour
             if(bodyPart == transform) continue;
             bodyPart.localScale = transform.localScale;
         }
-    }
-
-    public void DecreaseBodyPart(List<Transform> bodyPartsList)
-    { 
-        DecreaseBodyPartOfEachBead(bodyPartsList);
-       int lastIndex = bodyPartsList.Count - 1;
-       if(lastIndex <=4) return;
-       GameObject lastBead = bodyPartsList[lastIndex].gameObject;
-       bodyPartsList.RemoveAt(lastIndex);
-       Destroy(lastBead);
     }
 }

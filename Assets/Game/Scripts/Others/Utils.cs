@@ -10,10 +10,8 @@ public class Utils : MonoBehaviour
     public Vector2 GetRandomSpawnPositionInsideSpawnArea()
     {
         Bounds bounds = spawnArea.bounds;
-        float positionX = Random.Range(-45, 35);
-        float positionZ = Random.Range(-45, 45);
-
-
-        return new Vector2(positionX, positionZ);
+        float x = Random.Range(bounds.min.x, bounds.max.x);
+        float z = Random.Range(bounds.min.z, bounds.max.z);
+        return new Vector2(x, z);
     }
 }

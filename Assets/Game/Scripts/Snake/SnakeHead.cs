@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class SnakeHead : MonoBehaviour
 {
     [SerializeField] private SnakeGrowthManager growthManager;
+    public int scoreValue;
     public FoodSpawner foodSpawner;
     private ISnake iMySnake;
 
@@ -24,9 +26,10 @@ public class SnakeHead : MonoBehaviour
         {
             Destroy(other.gameObject);
             growthManager.AddBodyPart(iMySnake);
+            scoreValue++;
         }
 
-        if (other.gameObject.CompareTag("BodyPart"))
+        if (other.gameObject.CompareTag("BodyPart") && !other.gameObject.CompareTag("Player"))         //We do this when player and enemy collide head to head
         {
             ISnake interfaceOfOther = other.GetComponentInParent<ISnake>();
             if(interfaceOfOther == iMySnake) return;                                   // return as it's our own body part

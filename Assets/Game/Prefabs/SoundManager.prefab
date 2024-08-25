@@ -43,10 +43,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -138,6 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1140601354512546124}
   - component: {fileID: 7603489602820490734}
+  - component: {fileID: 6328572112050942697}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -176,6 +177,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 8558122072731914383}
   effectSource: {fileID: 8414868230398634504}
+--- !u!114 &6328572112050942697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5545165093330852269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88303c36589e9834380e3b69284c12e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicClips:
+  - {fileID: 8300000, guid: 16fc549f6d31a2944ad7903d2121d2bb, type: 3}
+  - {fileID: 8300000, guid: 9e062b9a4c6951940afb5a04741916c0, type: 3}
+  fadeTime: 1
 --- !u!1 &8267644878050762802
 GameObject:
   m_ObjectHideFlags: 0

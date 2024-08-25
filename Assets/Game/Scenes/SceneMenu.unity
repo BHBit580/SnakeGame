@@ -155,10 +155,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1063885174}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -21, y: 276}
-  m_SizeDelta: {x: 574.1732, y: 100.5134}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 41, y: -253}
+  m_SizeDelta: {x: 1095.58, y: 250.19202}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &30874824
 MonoBehaviour:
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Snake Game
+  m_text: Bead Snake
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 47f797faf69163548b68fad5dbaae361, type: 2}
   m_sharedMaterial: {fileID: -7286992008428237106, guid: 47f797faf69163548b68fad5dbaae361,
@@ -190,8 +190,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -208,13 +208,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 84.11
-  m_fontSizeBase: 84.11
+  m_fontSize: 136.2
+  m_fontSizeBase: 136.2
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 32
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -294,8 +294,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -86, y: -298}
-  m_SizeDelta: {x: 241.0508, y: 198.8556}
+  m_AnchoredPosition: {x: -100, y: -372.93}
+  m_SizeDelta: {x: 383.6558, y: 333.855}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &427137836
 MonoBehaviour:
@@ -373,8 +373,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 1584a66db73ffe9468be81af2dd57572, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -857,21 +857,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
-    - target: {fileID: 8558122072731914383, guid: d339060aa31ba3c42a9094b82d2d171d,
-        type: 3}
-      propertyPath: Loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8558122072731914383, guid: d339060aa31ba3c42a9094b82d2d171d,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 9e062b9a4c6951940afb5a04741916c0, type: 3}
-    - target: {fileID: 8558122072731914383, guid: d339060aa31ba3c42a9094b82d2d171d,
-        type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -927,7 +912,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.43118572, g: 0, b: 1, a: 1}
+  m_Color: {r: 0.77951074, g: 0.9843137, b: 0.34901965, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -958,6 +943,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1470664709}
   - {fileID: 431633052}
-  - {fileID: 1063885174}
   - {fileID: 869625602}
   - {fileID: 1471895199}
+  - {fileID: 1063885174}
