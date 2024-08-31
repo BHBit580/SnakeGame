@@ -19,7 +19,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"C:/Users/UJJAWAL/UNITYPROJECTS/ml-agents/SnakeGame/WebGL Builds/Build;C:/Users/UJJAWAL/UNITYPROJECTS/ml-agents/SnakeGame/WebGL Builds;C:/Users/UJJAWAL/UNITYPROJECTS/SnakeGame/Builds;C:/Users/UJJAWAL/UNITYPROJECTS/SnakeGame/New folder(Wb build)/Itch.io;C:/Users/UJJAWAL/UNITYPROJECTS/SnakeGame/WebGL Builds;;;;;\"}"
+                "value": "{\"m_Value\":\"C:/Users/UJJAWAL/UNITYPROJECTS/ml-agents/SnakeGame/New folder(Wb build)/Build/Build/Build;C:/Users/UJJAWAL/UNITYPROJECTS/ml-agents/SnakeGame/New folder(Wb build)/Build/Build;C:/Users/UJJAWAL/UNITYPROJECTS/ml-agents/SnakeGame/New folder(Wb build)/Build;C:/Users/UJJAWAL/UNITYPROJECTS/ml-agents/SnakeGame/New folder(Wb build);C:/Users/UJJAWAL/UNITYPROJECTS/ml-agents/SnakeGame/WebGL Builds/Build;C:/Users/UJJAWAL/UNITYPROJECTS/ml-agents/SnakeGame/WebGL Builds;C:/Users/UJJAWAL/UNITYPROJECTS/SnakeGame/Builds;C:/Users/UJJAWAL/UNITYPROJECTS/SnakeGame/New folder(Wb build)/Itch.io;C:/Users/UJJAWAL/UNITYPROJECTS/SnakeGame/WebGL Builds;\"}"
             }
         ]
     }

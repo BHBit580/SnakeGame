@@ -190,8 +190,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicClips:
+  - {fileID: 8300000, guid: d64c710e22be49a49b1a89fa992d1086, type: 3}
   - {fileID: 8300000, guid: 16fc549f6d31a2944ad7903d2121d2bb, type: 3}
-  - {fileID: 8300000, guid: 9e062b9a4c6951940afb5a04741916c0, type: 3}
   fadeTime: 1
 --- !u!1 &8267644878050762802
 GameObject:

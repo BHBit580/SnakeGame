@@ -68,7 +68,6 @@ public class FoodSpawner : MonoBehaviour
             food.layer = LayerMask.NameToLayer("Food");
             food.tag = "Food";
             food.transform.SetParent(transform);
-            foodList.Add(food);
         }
     }
 

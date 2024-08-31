@@ -1,8 +1,13 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerDeathUI : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI playerScore;
+    [SerializeField] private TextMeshProUGUI playerRank;
+    [SerializeField] private IntVariableSO playerScoreDataSO;
+    [SerializeField] private LeaderBoardManager leaderBoardManager;
     [SerializeField] private VoidEventChannelSO playerDiedEvent;
 
     private void OnEnable()
@@ -18,6 +23,8 @@ public class PlayerDeathUI : MonoBehaviour
     private void ShowDeathUI()
     {
         SetActiveAllChildren(true);
+        playerScore.text = "SCORE - " + playerScoreDataSO.data.ToString();
+        playerRank.text = "RANK - " +  leaderBoardManager.playerRank.ToString();
     }
 
     private void SetActiveAllChildren(bool value)
@@ -37,7 +44,7 @@ public class PlayerDeathUI : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
-    
+
     private void OnDestroy()
     {
         playerDiedEvent.UnregisterListener(ShowDeathUI);

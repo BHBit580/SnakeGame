@@ -18,6 +18,7 @@ public class LeaderBoardManager : MonoBehaviour
     [SerializeField] private Color playerColor;
     [SerializeField] private GameObject names, scores , rank;
     [SerializeField] private GameObject enemySpawner;
+    public int playerRank { get;private set;}
     private List<SnakeData> leaderBoardDataList = new List<SnakeData>();
     private int numberToDisplay = 5;
 
@@ -81,11 +82,11 @@ public class LeaderBoardManager : MonoBehaviour
         if(player ==null) return;
 
         var sortedList = leaderBoardDataList.OrderByDescending(e => e.score).ToList();
-        int playerRankValue = sortedList.FindIndex(e => e.name == "You") + 1;
+        playerRank = sortedList.FindIndex(e => e.name == "You") + 1;
         int playerIndex = names.transform.childCount - 1;
 
 
-        bool isActive = playerRankValue > numberToDisplay;
+        bool isActive = playerRank > numberToDisplay;
         names.transform.GetChild(playerIndex).gameObject.SetActive(isActive);
         scores.transform.GetChild(playerIndex).gameObject.SetActive(isActive);
         rank.transform.GetChild(playerIndex).gameObject.SetActive(isActive);
@@ -93,7 +94,7 @@ public class LeaderBoardManager : MonoBehaviour
         if (isActive)
         {
             scores.transform.GetChild(playerIndex).GetComponent<TextMeshProUGUI>().text = playerScore.data.ToString();
-            rank.transform.GetChild(playerIndex).GetComponent<TextMeshProUGUI>().text = playerRankValue + ".";
+            rank.transform.GetChild(playerIndex).GetComponent<TextMeshProUGUI>().text = playerRank + ".";
         }
     }
 

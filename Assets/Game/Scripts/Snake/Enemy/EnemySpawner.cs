@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject[] enemyPrefabs;
 
     [SerializeField] private Utils utils;
     [SerializeField] private FoodSpawner foodSpawner;
@@ -29,7 +29,7 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < number; i++)
         {
-            GameObject enemy = Instantiate(enemyPrefab , Vector3.zero , Quaternion.identity);
+            GameObject enemy = Instantiate(enemyPrefabs[Random.Range(0 , enemyPrefabs.Length)] , Vector3.zero , Quaternion.identity);
             enemy.gameObject.name = GenerateRandomName();
             Transform enemyHead = enemy.transform.GetChild(0);
 

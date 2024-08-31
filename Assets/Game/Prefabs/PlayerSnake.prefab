@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 5783969365872485561}
   m_Layer: 8
   m_Name: SnakeHead
-  m_TagString: BodyPart
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -221,6 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growthManager: {fileID: 5783969365872485561}
+  scoreValue: 0
   foodSpawner: {fileID: 0}
   playerDied: {fileID: 11400000, guid: dca24e1497941964b9b01ae0d90e259a, type: 2}
   playerScoreEvent: {fileID: 11400000, guid: 4378e9449af4a7546b1c00b11f6bd82a, type: 2}
