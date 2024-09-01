@@ -192,6 +192,8 @@ MonoBehaviour:
   musicClips:
   - {fileID: 8300000, guid: d64c710e22be49a49b1a89fa992d1086, type: 3}
   - {fileID: 8300000, guid: 16fc549f6d31a2944ad7903d2121d2bb, type: 3}
+  playerEatSfx: {fileID: 8300000, guid: 0db8862b7fe5bfa449b0f993e1fff825, type: 3}
+  playerScoreEvent: {fileID: 11400000, guid: 4378e9449af4a7546b1c00b11f6bd82a, type: 2}
   fadeTime: 1
 --- !u!1 &8267644878050762802
 GameObject:

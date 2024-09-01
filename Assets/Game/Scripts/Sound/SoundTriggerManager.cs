@@ -1,44 +1,29 @@
+using System;
 using UnityEngine;
 using System.Collections;
 
+//This class will trigger all the sounds , all the sounds in this game is being played from this class
+
 public class SoundTriggerManager : MonoBehaviour
 {
+    [SerializeField] private float musicVolume = 1f;
     [SerializeField] private AudioClip[] musicClips;
-    [SerializeField] private float fadeTime = 1f;
-
-    private int currentClipIndex = 0;
+    [SerializeField] private AudioClip playerEatSfx;
+    [SerializeField] private VoidEventChannelSO playerScoreEvent;
 
     private void Start()
     {
-        StartCoroutine(PlayMusicSequence());
+        playerScoreEvent.RegisterListener(PlayPlayerEatSfx);
+        SoundManager.instance.PlayMusicSequence(musicClips , musicVolume);
     }
 
-    private IEnumerator PlayMusicSequence()
+    private void PlayPlayerEatSfx()
     {
-        while (true)
-        {
-            if (musicClips.Length > 0)
-            {
-                AudioClip currentClip = musicClips[currentClipIndex];
+        SoundManager.instance.PlayEffectSoundOneShot(playerEatSfx);
+    }
 
-                // Fade in
-                SoundManager.instance.FadeInMusic(currentClip, fadeTime, 1f,  SoundManager.instance.GetMusicSource());
-
-                // Wait for clip to finish
-                yield return new WaitForSeconds(currentClip.length - fadeTime);
-
-                // Fade out
-                SoundManager.instance.FadeOutMusic(fadeTime, SoundManager.instance.GetMusicSource());
-                yield return new WaitForSeconds(fadeTime);
-
-                // Move to next clip
-                currentClipIndex = (currentClipIndex + 1) % musicClips.Length;
-            }
-            else
-            {
-                Debug.LogWarning("No music clips assigned to SoundTriggerManager.");
-                yield break;
-            }
-        }
+    private void OnDestroy()
+    {
+        playerScoreEvent.UnregisterListener(PlayPlayerEatSfx);
     }
 }

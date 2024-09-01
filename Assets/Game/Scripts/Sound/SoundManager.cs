@@ -6,7 +6,7 @@ public class SoundManager : MonoBehaviour
     public static SoundManager instance;
 
     [SerializeField] private AudioSource musicSource , effectSource;
-
+    private int currentClipIndex = 0;
     private void Awake()
     {
         if (instance == null)
@@ -29,6 +29,12 @@ public class SoundManager : MonoBehaviour
     {
         effectSource.volume = volume;
         effectSource.PlayOneShot(clip);
+    }
+
+    public void PlayMusicOneShot(AudioClip clip , float volume = 1f)
+    {
+        musicSource.volume = volume;
+        musicSource.PlayOneShot(clip);
     }
 
     public void PlayMusicLoop(AudioClip clip, float volume = 1f)
@@ -90,6 +96,35 @@ public class SoundManager : MonoBehaviour
         }
 
         audioSource.volume = 1f;
+    }
+
+
+    public void PlayMusicSequence(AudioClip[] musicClips , float musicVolume = 1)
+    {
+        StartCoroutine(PlayMusicSequenceCoroutine(musicClips , musicVolume));
+    }
+
+    private IEnumerator PlayMusicSequenceCoroutine(AudioClip[] musicClips , float musicVolume)
+    {
+        while (true)
+        {
+            if (musicClips.Length > 0)
+            {
+                AudioClip currentClip = musicClips[currentClipIndex];
+                PlayMusicOneShot(currentClip , musicVolume);
+
+                // Wait for clip to finish
+                yield return new WaitForSeconds(currentClip.length);
+
+                // Move to next clip
+                currentClipIndex = (currentClipIndex + 1) % musicClips.Length;
+            }
+            else
+            {
+                Debug.LogWarning("No music clips assigned to SoundTriggerManager.");
+                yield break;
+            }
+        }
     }
 
     public void StopMusic()
