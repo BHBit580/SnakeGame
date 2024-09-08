@@ -1,9 +1,13 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InputReader : MonoBehaviour , PlayerInputs.INewactionmapActions
 {
-    [SerializeField] private float dis = 0.5f;
+    public float detectionRadius = 0.5f;
+    public float distance = 5f;
     public GameObject player;
     public bool IsFastSpeed { get; private set; }
     public Vector3 MouseWorldPosition { get; private set; }
@@ -53,24 +57,42 @@ public class InputReader : MonoBehaviour , PlayerInputs.INewactionmapActions
         }
     }
 
+
     private void CheckMouseOverPlayer()
     {
-        Vector2 playerPos = new Vector2(player.transform.position.x, player.transform.position.z);
-        Vector2 mousePos = new Vector2(MouseWorldPosition.x, MouseWorldPosition.z);
+        Ray ray = mainCamera.ScreenPointToRay(currentMouseScreenPosition);
 
-        Debug.Log(Vector2.Distance(playerPos , mousePos));
+        RaycastHit[] hit = Physics.SphereCastAll(ray, detectionRadius, 100, Physics.AllLayers, QueryTriggerInteraction.Collide);
 
-        if (Vector2.Distance(playerPos, mousePos) < dis)
+        List<RaycastHit> hitList = hit.ToList();
+
+        foreach (var hitItem in hitList)
         {
-            MouseWorldPosition = _mousePos;
-        }
-        else
-        {
-            _mousePos = MouseWorldPosition;
+            if (hitItem.collider.CompareTag("Player"))
+            {
+                prihit = hitItem;
+                Debug.DrawRay(player.transform.position, player.transform.forward * distance, Color.red);
+                MouseWorldPosition = player.transform.position + player.transform.forward * distance;
+
+                Debug.Log(hitItem.collider.name);
+            }
+
+            if(hitItem.collider.CompareTag("Ground"))
+            {
+                Debug.Log(hitItem.collider.name);
+            }
         }
     }
 
-    private Vector3 _mousePos;
+    private RaycastHit prihit;
+    private void OnDrawGizmos()
+    {
+        if (prihit.collider != null)
+        {
+            Gizmos.DrawWireSphere(prihit.point , detectionRadius);
+        }
+    }
+
 
     private void OnDestroy()
     {

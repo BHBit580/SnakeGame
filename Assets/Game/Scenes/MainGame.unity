@@ -1461,7 +1461,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &541993023
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1478,8 +1478,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -329.2332, y: -240.93631}
-  m_SizeDelta: {x: 149.5336, y: 126.1274}
+  m_AnchoredPosition: {x: -306, y: -228.13}
+  m_SizeDelta: {x: 150.706, y: 138.4372}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &541993024
 MonoBehaviour:
@@ -1557,7 +1557,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 59aac1d665e73de469f41913f429f485, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4f4a2194fed7afa47a180fc3e9617837, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1667,7 +1667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &569354785
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1802,7 +1802,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &699484083
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2148,7 +2148,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &826174546
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2165,7 +2165,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 115.50217, y: -266.49365}
+  m_AnchoredPosition: {x: 97, y: -237.5}
   m_SizeDelta: {x: 120.3191, y: 119.703}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &826174547
@@ -2729,6 +2729,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SoundManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6328572112050942697, guid: d339060aa31ba3c42a9094b82d2d171d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6328572112050942697, guid: d339060aa31ba3c42a9094b82d2d171d,
+        type: 3}
+      propertyPath: musicVolume
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3440,7 +3450,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1239795793
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5844,6 +5854,16 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1220084765}
+    - target: {fileID: 3503445511953381759, guid: a6bfefb3e1085a9469dc58888085ea8e,
+        type: 3}
+      propertyPath: distance
+      value: 2.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3503445511953381759, guid: a6bfefb3e1085a9469dc58888085ea8e,
+        type: 3}
+      propertyPath: detectionRadius
+      value: 0.67
+      objectReference: {fileID: 0}
     - target: {fileID: 4170903334245085522, guid: a6bfefb3e1085a9469dc58888085ea8e,
         type: 3}
       propertyPath: m_Name
@@ -5898,6 +5918,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6436272838274292423, guid: a6bfefb3e1085a9469dc58888085ea8e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5956,7 +5981,7 @@ GameObject:
   - component: {fileID: 4460138688195149783}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6346,8 +6371,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 330585546}
   - {fileID: 1677939065}
-  - {fileID: 1044401681}
   - {fileID: 5663240199811814554}
+  - {fileID: 1044401681}
   - {fileID: 7321792447435021163}
   - {fileID: 6513563922857579195}
   - {fileID: 3596625824238669415}
