@@ -189,12 +189,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88303c36589e9834380e3b69284c12e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicVolume: 0.5
   musicClips:
-  - {fileID: 8300000, guid: d64c710e22be49a49b1a89fa992d1086, type: 3}
-  - {fileID: 8300000, guid: 16fc549f6d31a2944ad7903d2121d2bb, type: 3}
+  - {fileID: 8300000, guid: cf40b8a44830bb24eb32e4990b65d960, type: 3}
+  - {fileID: 8300000, guid: 6c15464f7bc007448b831ac019cde7cd, type: 3}
   playerEatSfx: {fileID: 8300000, guid: 0db8862b7fe5bfa449b0f993e1fff825, type: 3}
   playerScoreEvent: {fileID: 11400000, guid: 4378e9449af4a7546b1c00b11f6bd82a, type: 2}
-  fadeTime: 1
 --- !u!1 &8267644878050762802
 GameObject:
   m_ObjectHideFlags: 0

@@ -2730,16 +2730,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
-    - target: {fileID: 6328572112050942697, guid: d339060aa31ba3c42a9094b82d2d171d,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6328572112050942697, guid: d339060aa31ba3c42a9094b82d2d171d,
-        type: 3}
-      propertyPath: musicVolume
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3426,12 +3416,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162743844}
   m_CullTransparentMesh: 1
---- !u!1 &1220084765 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6436272838274292423, guid: a6bfefb3e1085a9469dc58888085ea8e,
-    type: 3}
-  m_PrefabInstance: {fileID: 6471509746397008873}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1239795792
 GameObject:
   m_ObjectHideFlags: 0
@@ -4139,23 +4123,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6471509746397008873}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1391854285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1391854282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8f3f20989941d749b88f4bccd0840dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputReader: {fileID: 315404880}
-  startPoint: {x: 0, y: 0, z: 0}
-  endPoint: {x: 0, y: 0, z: 0}
-  lineColor: {r: 1, g: 0, b: 0.0767293, a: 1}
-  lineWidth: 0.1
 --- !u!1 &1613451150
 GameObject:
   m_ObjectHideFlags: 0
@@ -5844,26 +5811,6 @@ PrefabInstance:
       propertyPath: foodSpawner
       value: 
       objectReference: {fileID: 7607198509092461322}
-    - target: {fileID: 3503445511953381759, guid: a6bfefb3e1085a9469dc58888085ea8e,
-        type: 3}
-      propertyPath: time
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3503445511953381759, guid: a6bfefb3e1085a9469dc58888085ea8e,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1220084765}
-    - target: {fileID: 3503445511953381759, guid: a6bfefb3e1085a9469dc58888085ea8e,
-        type: 3}
-      propertyPath: distance
-      value: 2.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3503445511953381759, guid: a6bfefb3e1085a9469dc58888085ea8e,
-        type: 3}
-      propertyPath: detectionRadius
-      value: 0.67
-      objectReference: {fileID: 0}
     - target: {fileID: 4170903334245085522, guid: a6bfefb3e1085a9469dc58888085ea8e,
         type: 3}
       propertyPath: m_Name
@@ -5919,19 +5866,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6436272838274292423, guid: a6bfefb3e1085a9469dc58888085ea8e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4170903334245085522, guid: a6bfefb3e1085a9469dc58888085ea8e,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1391854285}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6bfefb3e1085a9469dc58888085ea8e, type: 3}
 --- !u!1 &6473775616376471445
 GameObject:
@@ -6372,10 +6310,10 @@ SceneRoots:
   - {fileID: 330585546}
   - {fileID: 1677939065}
   - {fileID: 5663240199811814554}
-  - {fileID: 1044401681}
   - {fileID: 7321792447435021163}
   - {fileID: 6513563922857579195}
   - {fileID: 3596625824238669415}
   - {fileID: 1835602923}
   - {fileID: 1826255167}
   - {fileID: 6471509746397008873}
+  - {fileID: 1044401681}
