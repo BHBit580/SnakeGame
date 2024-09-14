@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 966be606197166640a108ef53355eddf
+guid: 6858abb4516aae344881bf286b3aac33
 TextureImporter:
   internalIDToNameTable:
   - first:
       213: 21300000
-    second: SF Title
+    second: SF Window
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,17 +72,17 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 4096
@@ -95,7 +95,7 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: iPhone
     maxTextureSize: 4096
@@ -134,7 +134,7 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Windows Store Apps
     maxTextureSize: 4096
@@ -160,21 +160,21 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SF Title
+      name: SF Window
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 256
-        height: 64
+        width: 481
+        height: 235
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 125, y: 30, z: 125, w: 30}
+      border: {x: 170, y: 90, z: 170, w: 100}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -196,7 +196,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      SF Title: 21300000
+      SF Window: 21300000
   mipmapLimitGroupName: 
   pSDRemoveMatte: 1
   userData: 
