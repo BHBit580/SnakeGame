@@ -178,7 +178,6 @@ GameObject:
   - component: {fileID: 4131039540614798626}
   - component: {fileID: 2809842975966555499}
   - component: {fileID: 3703760052663673958}
-  - component: {fileID: 5938666613687691585}
   - component: {fileID: 2054964833984191362}
   m_Layer: 0
   m_Name: EnemySnake(Orange)
@@ -254,20 +253,6 @@ MonoBehaviour:
   - {fileID: 4814791175059460291}
   minDistance: 1.5
   speed: 5
---- !u!114 &5938666613687691585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3303136963275943293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DecisionPeriod: 5
-  TakeActionsBetweenDecisions: 1
 --- !u!114 &2054964833984191362
 MonoBehaviour:
   m_ObjectHideFlags: 0

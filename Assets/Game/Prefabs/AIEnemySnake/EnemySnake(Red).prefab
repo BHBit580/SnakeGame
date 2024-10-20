@@ -389,6 +389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growthManager: {fileID: 4748650199075123056}
+  scoreValue: 0
   foodSpawner: {fileID: 0}
 --- !u!1 &6151489489517729399
 GameObject:
@@ -484,7 +485,6 @@ GameObject:
   - component: {fileID: 2609594090223034506}
   - component: {fileID: 5363415627016439302}
   - component: {fileID: 193064076425224622}
-  - component: {fileID: 1267644680168839196}
   - component: {fileID: 1706334976485901327}
   m_Layer: 0
   m_Name: EnemySnake(Red)
@@ -560,20 +560,6 @@ MonoBehaviour:
   - {fileID: 3937833634773246004}
   minDistance: 1.5
   speed: 5
---- !u!114 &1267644680168839196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6360274651724487361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DecisionPeriod: 5
-  TakeActionsBetweenDecisions: 1
 --- !u!114 &1706334976485901327
 MonoBehaviour:
   m_ObjectHideFlags: 0

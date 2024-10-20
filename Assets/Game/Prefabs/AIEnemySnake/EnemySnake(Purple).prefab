@@ -348,7 +348,6 @@ GameObject:
   - component: {fileID: 440655360323014848}
   - component: {fileID: 8175578801223492857}
   - component: {fileID: 7095975880716574248}
-  - component: {fileID: 8222164464066742674}
   - component: {fileID: 5196660375941054625}
   m_Layer: 0
   m_Name: EnemySnake(Purple)
@@ -424,20 +423,6 @@ MonoBehaviour:
   - {fileID: 1812233263546734208}
   minDistance: 1.5
   speed: 5
---- !u!114 &8222164464066742674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5792109312053117157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DecisionPeriod: 5
-  TakeActionsBetweenDecisions: 1
 --- !u!114 &5196660375941054625
 MonoBehaviour:
   m_ObjectHideFlags: 0
